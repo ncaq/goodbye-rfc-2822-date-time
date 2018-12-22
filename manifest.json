@@ -1,13 +1,13 @@
 {
   "manifest_version": 2,
-  "name": "auto-convert-of-date-to-local-format",
+  "name": "goodbye-rfc-2822-date-time",
   "version": "0.1.0",
 
   "gecko": {
-    "id": "auto-convert-of-date-to-local-format@ncaq.net"
+    "id": "goodbye-rfc-2822-date-time@ncaq.net"
   },
 
-  "description": "I can not remember the English month notation. This extension converts time notation to native language as much as possible.",
+  "description": "I hate the date and time notation method like RFC 2822. This extension converts time notation to native language as much as possible.",
 
   "icons": {
     "48": "icon.svg",

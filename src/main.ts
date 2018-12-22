@@ -132,10 +132,7 @@ import "moment/locale/zh-tw";
 moment.locale(window.navigator.language);
 
 function replaceDate() {
-  console.log(
-    "boot auto-convert-of-date-to-local-format: ",
-    moment().format("LLLL")
-  );
+  console.log("boot goodbye-rfc-2822-date-time: ", moment().format("LLLL"));
   switch (true) {
     case location.href.includes("github.com"): {
       github();

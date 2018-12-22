@@ -194,6 +194,9 @@ function stackoverflow() {
 // 履歴書き換える系のSPAに効果があるかもしれない(未確認)
 window.addEventListener("popstate", replaceDate);
 
+// AutoPagerizeでページが読み込まれた場合に対応
+document.body.addEventListener("AutoPagerize_DOMNodeInserted", replaceDate);
+
 // GitHubみたいにbody以下全部書き換えるサイトへの防衛術
 const observer = new MutationObserver(mutations => {
   mutations.forEach(_ => {

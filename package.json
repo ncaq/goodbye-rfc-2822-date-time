@@ -1,7 +1,8 @@
 {
   "license": "MIT",
   "scripts": {
-    "build": "browserify src/main.ts -p [tsify] > dist/main.js && web-ext build --overwrite-dest",
+    "build": "mkdir -p dist && browserify src/main.ts -p [tsify] > dist/main.js",
+    "package": "yarn build && web-ext build --overwrite-dest",
     "fix": "prettier --write **/*.ts --list-different && tslint --fix --project .",
     "lint": "prettier **/*.ts --list-different && tslint --project ."
   },

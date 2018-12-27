@@ -1,7 +1,7 @@
 {
   "license": "MIT",
   "scripts": {
-    "build": "parcel build src/main.ts",
+    "build": "parcel build src/main.ts --no-source-maps",
     "package": "yarn build && web-ext build --config web-ext-config.js",
     "fix": "prettier --write **/*.ts --list-different && tslint --fix --project .",
     "lint": "prettier **/*.ts --list-different && tslint --project . && web-ext lint"

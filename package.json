@@ -3,11 +3,14 @@
   "scripts": {
     "dev": "parcel src/main.ts",
     "build": "parcel build src/main.ts",
-    "package": "yarn build && web-ext build --overwrite-dest",
+    "package": "yarn build && web-ext build --config web-ext-config.js",
     "fix": "prettier --write **/*.ts --list-different && tslint --fix --project .",
-    "lint": "prettier **/*.ts --list-different && tslint --project ."
+    "lint": "prettier **/*.ts --list-different && tslint --project . && web-ext lint"
   },
   "devDependencies": {
+    "eslint": "^5.11.1",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-prettier": "^3.0.0",
     "parcel": "^1.11.0",
     "parcel-bundler": "^1.11.0",
     "prettier": "^1.15.3",

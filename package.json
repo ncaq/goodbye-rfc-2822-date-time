@@ -1,15 +1,16 @@
 {
   "license": "MIT",
   "scripts": {
-    "build": "mkdir -p dist && browserify src/main.ts -p [tsify] > dist/main.js",
+    "dev": "parcel src/main.ts",
+    "build": "parcel build src/main.ts",
     "package": "yarn build && web-ext build --overwrite-dest",
     "fix": "prettier --write **/*.ts --list-different && tslint --fix --project .",
     "lint": "prettier **/*.ts --list-different && tslint --project ."
   },
   "devDependencies": {
-    "browserify": "^16.2.3",
+    "parcel": "^1.11.0",
+    "parcel-bundler": "^1.11.0",
     "prettier": "^1.15.3",
-    "tsify": "^4.0.1",
     "tslint": "^5.12.0",
     "tslint-config-prettier": "^1.17.0",
     "typescript": "^3.2.2"

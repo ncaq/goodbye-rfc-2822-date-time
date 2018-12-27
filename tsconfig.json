@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es2016",
+    "target": "es2018",
     "module": "commonjs",
-    "declaration": true,
     "sourceMap": true,
     "outDir": "./dist",
 
@@ -11,8 +10,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-
-    "esModuleInterop": true
+    "noFallthroughCasesInSwitch": true
   }
 }

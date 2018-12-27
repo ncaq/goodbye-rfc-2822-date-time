@@ -46,3 +46,10 @@ If used in Japanese, `Dec 22, 2018` will be converted to `2018年12月22日 土�
 # use library mainly
 
 [Moment.js](https://momentjs.com/)
+
+# How to package
+
+~~~
+% yarn
+% yarn package
+~~~

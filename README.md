@@ -38,7 +38,7 @@ This extension converts time notation to native language as much as possible.
 
 If used in Japanese, `Dec 22, 2018` will be converted to `2018年12月22日 土曜日 00:00`.
 
-# support website
+# support website(current)
 
 * GitHub
 * Stack Overflow like site

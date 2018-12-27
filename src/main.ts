@@ -147,12 +147,25 @@ function replaceDate() {
 
 // GitHub向けの書き換え
 function github() {
+  // issueとか
   Array.from(document.querySelectorAll("relative-time")).forEach(
     relativeTime => {
       if (relativeTime instanceof HTMLElement) {
         const title = relativeTime.getAttribute("title");
         if (title) {
           relativeTime.innerText = title;
+        }
+      }
+    }
+  );
+  // コミット履歴の区切り
+  Array.from(document.querySelectorAll(".commit-group-title")).forEach(
+    commitGroupTitle => {
+      if (commitGroupTitle instanceof HTMLElement) {
+        console.log(commitGroupTitle.innerText);
+        const m = commitGroupTitle.innerText.match(/Commits on (\w+ \d+, \d+)/);
+        if (m) {
+          commitGroupTitle.innerText = moment(m[1]).format("LLLL");
         }
       }
     }

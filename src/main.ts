@@ -163,10 +163,12 @@ function github() {
   Array.from(document.querySelectorAll(".commit-group-title")).forEach(
     commitGroupTitle => {
       if (commitGroupTitle instanceof HTMLElement) {
-        const m = commitGroupTitle.innerText.match(/Commits on (\w+ \d+, \d+)/);
-        if (m) {
-          commitGroupTitle.innerText = moment(m[1]).format("LLLL");
-        }
+        commitGroupTitle.innerText = commitGroupTitle.innerText.replace(
+          /(Commits on )(\w+ \d+, \d+)/,
+          (_, p1, p2) => {
+            return p1 + moment(p2).format("LLLL");
+          }
+        );
       }
     }
   );

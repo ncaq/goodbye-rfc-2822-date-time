@@ -134,7 +134,7 @@ moment.locale(window.navigator.language);
 function replaceDate() {
   console.log("boot goodbye-rfc-2822-date-time: ", moment().format("LLLL"));
   switch (true) {
-    case location.href.includes("github.com"): {
+    case location.hostname === "github.com": {
       github();
       break;
     }
@@ -186,7 +186,7 @@ function detectStackoverflow() {
 
   return (
     location.href.includes("stackexchange.com") ||
-    location.href.includes("stackoverflow.com/") ||
+    location.href.includes("stackoverflow.com") ||
     detectByQuery()
   );
 }

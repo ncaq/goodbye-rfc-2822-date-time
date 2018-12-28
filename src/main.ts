@@ -143,6 +143,10 @@ function replaceDate() {
       stackoverflow();
       break;
     }
+    case location.hostname === "hackage.haskell.org": {
+      hackage();
+      break;
+    }
   }
 }
 
@@ -193,6 +197,7 @@ function detectStackoverflow() {
   );
 }
 
+// StackExchange系のサイト全体を書き換え
 function stackoverflow() {
   Array.from(
     document.querySelectorAll(".relativetime, .relativetime-clean")
@@ -204,6 +209,53 @@ function stackoverflow() {
       }
     }
   });
+}
+
+// hackageの投稿日時
+function hackage() {
+  function replaceTableDateTime(ths: XPathResult) {
+    const th = ths.iterateNext();
+    if (th instanceof HTMLElement) {
+      const next = th.nextElementSibling;
+      if (next instanceof HTMLElement) {
+        const dateTimeText = next.childNodes[next.childNodes.length - 1];
+        if (dateTimeText instanceof Text && dateTimeText.textContent) {
+          dateTimeText.textContent = dateTimeText.textContent.replace(
+            /( at )(.+)/,
+            (match, p1, p2) => {
+              const parsed = moment(p2, "dddd MMMM DD HH:mm:ss Z YYYY", "en");
+              // 数回呼び出されるからべき等性が保てない
+              if (parsed.isValid()) {
+                return (
+                  p1 + parsed.locale(window.navigator.language).format("LLLL")
+                );
+              }
+              return match;
+            }
+          );
+        }
+      }
+    }
+  }
+
+  replaceTableDateTime(
+    document.evaluate(
+      `//th[text() = "Revised"]`,
+      document,
+      null,
+      XPathResult.ANY_TYPE,
+      null
+    )
+  );
+  replaceTableDateTime(
+    document.evaluate(
+      `//th[text() = "Uploaded"]`,
+      document,
+      null,
+      XPathResult.ANY_TYPE,
+      null
+    )
+  );
 }
 
 // 履歴書き換える系のSPAに効果があるかもしれない(未確認)

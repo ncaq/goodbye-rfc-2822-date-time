@@ -42,6 +42,7 @@ If used in Japanese, `Dec 22, 2018` will be converted to `2018年12月22日 土�
 
 * GitHub
 * Stack Overflow like site
+* hackage
 
 # use library mainly
 

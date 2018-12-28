@@ -3,7 +3,6 @@
   "extends": ["tslint:recommended", "tslint-config-prettier"],
   "rules": {
     "interface-name": [true, "never-prefix"],
-    "restrict-plus-operands": true,
-    "no-console": false
+    "restrict-plus-operands": true
   }
 }

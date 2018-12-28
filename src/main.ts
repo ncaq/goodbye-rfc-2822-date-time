@@ -132,6 +132,7 @@ import "moment/locale/zh-tw";
 moment.locale(window.navigator.language);
 
 function replaceDate() {
+  // tslint:disable-next-line:no-console
   console.log("boot goodbye-rfc-2822-date-time: ", moment().format("LLLL"));
   switch (true) {
     case location.hostname === "github.com": {

@@ -162,7 +162,6 @@ function github() {
   Array.from(document.querySelectorAll(".commit-group-title")).forEach(
     commitGroupTitle => {
       if (commitGroupTitle instanceof HTMLElement) {
-        console.log(commitGroupTitle.innerText);
         const m = commitGroupTitle.innerText.match(/Commits on (\w+ \d+, \d+)/);
         if (m) {
           commitGroupTitle.innerText = moment(m[1]).format("LLLL");

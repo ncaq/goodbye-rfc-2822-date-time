@@ -44,6 +44,11 @@ If used in Japanese, `Dec 22, 2018` will be converted to `2018年12月22日 土�
 * Stack Overflow like site
 * hackage
 
+# distribution
+
+* [Firefox](https://addons.mozilla.org/firefox/addon/goodbye-rfc-2822-date-time/)
+* [Chrome](https://chrome.google.com/webstore/detail/goodbye-rfc-2822-date-tim/ncpepaiocdmmmonbikofmggdphoheoge)
+
 # use library mainly
 
 [Moment.js](https://momentjs.com/)

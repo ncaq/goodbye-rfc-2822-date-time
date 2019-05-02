@@ -1,7 +1,7 @@
 {
   "license": "MIT",
   "scripts": {
-    "build": "parcel build src/main.ts --no-source-maps",
+    "build": "parcel build src/main.ts",
     "package": "yarn build && web-ext build --config web-ext-config.js",
     "lint": "eslint --ignore-path .gitignore --ext .js --ext .ts .",
     "fix": "yarn lint --fix"

@@ -1,7 +1,7 @@
 [![Build Status](https://dev.azure.com/ncaq/goodbye-rfc-2822-date-time/_apis/build/status/ncaq.goodbye-rfc-2822-date-time?branchName=master)](https://dev.azure.com/ncaq/goodbye-rfc-2822-date-time/_build/latest?definitionId=1&branchName=master)
-![GitHub](https://img.shields.io/github/license/ncaq/goodbye-rfc-2822-date-time.svg)
-![Mozilla Add-on](https://img.shields.io/amo/users/goodbye-rfc-2822-date-time.svg)
-![Chrome Web Store](https://img.shields.io/chrome-web-store/users/ncpepaiocdmmmonbikofmggdphoheoge.svg)
+[![LICENSE](https://img.shields.io/github/license/ncaq/goodbye-rfc-2822-date-time.svg)](https://github.com/ncaq/goodbye-rfc-2822-date-time/blob/master/LICENSE)
+[![Mozilla Add-on](https://img.shields.io/amo/users/goodbye-rfc-2822-date-time.svg)](https://addons.mozilla.org/ja/firefox/addon/goodbye-rfc-2822-date-time/)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/users/ncpepaiocdmmmonbikofmggdphoheoge.svg)](https://chrome.google.com/webstore/detail/goodbye-rfc-2822-date-tim/ncpepaiocdmmmonbikofmggdphoheoge)
 
 # goodbye-rfc-2822-date-time
 

@@ -3,23 +3,24 @@
   "scripts": {
     "build": "parcel build src/main.ts --no-source-maps",
     "package": "yarn build && web-ext build --config web-ext-config.js",
-    "fix": "prettier --write **/*.ts --list-different && tslint --fix --project .",
-    "lint": "prettier **/*.ts --list-different && tslint --project . && web-ext lint"
+    "lint": "eslint --ignore-path .gitignore --ext .js --ext .ts .",
+    "fix": "yarn lint --fix"
   },
   "devDependencies": {
-    "browserify": "^16.2.3",
-    "eslint": "^5.11.1",
-    "eslint-config-prettier": "^3.3.0",
-    "eslint-plugin-prettier": "^3.0.0",
-    "parcel": "^1.11.0",
-    "parcel-bundler": "^1.11.0",
-    "prettier": "^1.15.3",
-    "tslint": "^5.12.0",
-    "tslint-config-prettier": "^1.17.0",
-    "typescript": "^3.2.2",
-    "web-ext": "^2.9.3"
+    "@typescript-eslint/eslint-plugin": "^1.7.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^4.2.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-mysticatea": "^4.2.4",
+    "eslint-plugin-prettier": "^3.0.1",
+    "parcel": "^1.12.3",
+    "parcel-bundler": "^1.12.3",
+    "prettier": "^1.17.0",
+    "typescript": "^3.4.5",
+    "web-ext": "^3.0.0"
   },
   "dependencies": {
-    "moment": "^2.23.0"
+    "moment": "^2.24.0"
   }
 }

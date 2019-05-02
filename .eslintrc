@@ -12,7 +12,8 @@
   "plugins": ["@typescript-eslint", "mysticatea"],
   "rules": {
     "no-param-reassign": "off",
-    "no-use-before-define": ["error", { "classes": false }],
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error", { "classes": false }],
     "curly": ["error", "all"],
     "sort-imports": "error",
     "prefer-destructuring": [
@@ -22,6 +23,8 @@
         "object": true
       }
     ],
+    "@typescript-eslint/explicit-member-accessibility": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
     "mysticatea/no-instanceof-array": "error",
     "mysticatea/no-instanceof-wrapper": "error",
     "mysticatea/no-literal-call": "error",

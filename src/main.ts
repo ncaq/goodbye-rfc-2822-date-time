@@ -1,10 +1,7 @@
-import moment from "moment";
-
+import * as moment from "moment";
 // 他に全部のロケールを読み込む方法があれば誰か教えて下さい
 // せめてre exportしてファイルを分けたかったですがside effectを消去してしまうためうまくいかなかった
-
 /* eslint-disable sort-imports */
-
 import "moment/locale/af";
 import "moment/locale/ar";
 import "moment/locale/ar-dz";
@@ -130,156 +127,202 @@ import "moment/locale/zh-cn";
 import "moment/locale/zh-hk";
 import "moment/locale/zh-tw";
 
-// momentのグローバル地域設定
-moment.locale(window.navigator.language);
-
-// GitHub向けの書き換え
-function github() {
-  // issueとか
-  Array.from(document.querySelectorAll("relative-time")).forEach(
-    relativeTime => {
-      if (relativeTime instanceof HTMLElement) {
-        const title = relativeTime.getAttribute("title");
-        if (title) {
-          relativeTime.innerText = title;
-        }
-      }
-    }
-  );
-  // コミット履歴の区切り
-  Array.from(document.querySelectorAll(".commit-group-title")).forEach(
-    commitGroupTitle => {
-      if (commitGroupTitle instanceof HTMLElement) {
-        commitGroupTitle.innerText = commitGroupTitle.innerText.replace(
-          /(Commits on )(\w+ \d+, \d+)/,
-          (_, p1, p2) => {
-            return p1 + moment(p2).format("LLLL");
-          }
-        );
-      }
-    }
-  );
-}
-
-// StackExchange系のサイト検知
-function detectStackoverflow() {
-  // フッタを解析して判断を下す
-  // 割と重いのであまり読みたくない
-  function detectByQuery() {
-    const footer = document.querySelector("footer");
-    if (footer instanceof HTMLElement) {
-      return footer.innerText.includes("Stack Exchange");
-    }
-    return false;
+abstract class Site {
+  // 生成されたらmomentの地域設定してコンソールに起動したログを残す.
+  constructor() {
+    // momentのグローバル地域設定.
+    moment.locale(window.navigator.language);
+    // eslint-disable-next-line no-console
+    console.log(
+      `goodbye-rfc-2822-date-time: type ${
+        this.constructor.name
+      }: time: ${moment().format("LLLL")}`
+    );
   }
 
-  return (
-    window.location.href.includes("stackexchange.com") ||
-    window.location.href.includes("stackoverflow.com") ||
-    detectByQuery()
-  );
-}
-
-// StackExchange系のサイト全体を書き換え
-function stackoverflow() {
-  Array.from(
-    document.querySelectorAll(".relativetime, .relativetime-clean")
-  ).forEach(relativeTime => {
-    if (relativeTime instanceof HTMLElement) {
-      const title = relativeTime.getAttribute("title");
-      if (title) {
-        relativeTime.innerText = moment(title).format("LLLL");
-      }
+  // サイトを検知する.
+  // 検知できなかったら`undefined`を返します.
+  static detect(): Site | undefined {
+    // GitHub
+    if (window.location.hostname === "github.com") {
+      return new GitHub();
     }
-  });
+
+    // Hackage
+    if (window.location.hostname === "hackage.haskell.org") {
+      return new Hackage();
+    }
+
+    // 即座にわかる範囲のメジャーなStack Exchangeドメイン
+    if (
+      [
+        "stackexchange.com",
+        "stackoverflow.com",
+        "superuser.com",
+        "askubuntu.com"
+      ].includes(window.location.hostname)
+    ) {
+      return new StackExchange();
+    }
+    // フッタを解析して判断を下す
+    // 割と重いのであまり使いたくない
+    const footer = document.getElementsByTagName("footer")[0];
+    if (
+      footer instanceof HTMLElement &&
+      footer.innerText.includes("Stack Exchange")
+    ) {
+      return new StackExchange();
+    }
+
+    return undefined;
+  }
+
+  // GitHubみたいにbody以下全部書き換えるサイトで再初期化を行う
+  observeBody() {
+    const observer = new MutationObserver(mutations => {
+      mutations.forEach(() => {
+        this.replace();
+      });
+    });
+    Array.from(document.getElementsByTagName("body")).forEach(body => {
+      if (body instanceof HTMLElement) {
+        observer.observe(body, { childList: true });
+      }
+    });
+  }
+
+  // 普通の場合の初期化
+  init() {
+    this.replace();
+    this.observe();
+  }
+
+  // 汎用的な監視
+  observe() {
+    // AutoPagerizeでページが読み込まれた場合に対応
+    document.body.addEventListener(
+      "AutoPagerize_DOMNodeInserted",
+      this.replace
+    );
+    // 履歴書き換える系のSPAに効果があるかもしれない(未確認)
+    window.addEventListener("popstate", () => this.replace());
+  }
+
+  abstract replace(): void;
 }
 
-// hackageの投稿日時
-function hackage() {
-  function replaceTableDateTime(ths: XPathResult) {
-    const th = ths.iterateNext();
-    if (th instanceof HTMLElement) {
-      const next = th.nextElementSibling;
-      if (next instanceof HTMLElement) {
-        const dateTimeText = next.childNodes[next.childNodes.length - 1];
-        if (dateTimeText instanceof Text && dateTimeText.textContent) {
-          dateTimeText.textContent = dateTimeText.textContent.replace(
-            /( at )(.+)/,
-            (match, p1, p2) => {
-              const parsed = moment(p2, "dddd MMMM DD HH:mm:ss Z YYYY", "en");
-              // 数回呼び出されるからべき等性が保てない
-              if (parsed.isValid()) {
-                return (
-                  p1 + parsed.locale(window.navigator.language).format("LLLL")
-                );
-              }
-              return match;
+// [GitHub](https://github.com/)
+class GitHub extends Site {
+  // eslint-disable-next-line class-methods-use-this
+  replace() {
+    // issueとか
+    Array.from(document.getElementsByTagName("relative-time")).forEach(
+      relativeTime => {
+        if (relativeTime instanceof HTMLElement) {
+          const title = relativeTime.getAttribute("title");
+          if (title) {
+            relativeTime.innerText = title;
+          }
+        }
+      }
+    );
+    // コミット履歴の区切り
+    Array.from(document.getElementsByClassName("commit-group-title")).forEach(
+      commitGroupTitle => {
+        if (commitGroupTitle instanceof HTMLElement) {
+          commitGroupTitle.innerText = commitGroupTitle.innerText.replace(
+            /(Commits on )(\w+ \d+, \d+)/,
+            (_, p1, p2) => {
+              return p1 + moment(p2).format("LLLL");
             }
           );
         }
       }
-    }
+    );
   }
 
-  replaceTableDateTime(
-    document.evaluate(
-      `//th[text() = "Revised"]`,
-      document,
-      null,
-      XPathResult.ANY_TYPE,
-      null
-    )
-  );
-  replaceTableDateTime(
-    document.evaluate(
-      `//th[text() = "Uploaded"]`,
-      document,
-      null,
-      XPathResult.ANY_TYPE,
-      null
-    )
-  );
-}
-
-function replaceDate() {
-  // eslint-disable-next-line no-console
-  console.log("boot goodbye-rfc-2822-date-time: ", moment().format("LLLL"));
-  switch (true) {
-    case window.location.hostname === "github.com": {
-      github();
-      break;
-    }
-    case detectStackoverflow(): {
-      stackoverflow();
-      break;
-    }
-    case window.location.hostname === "hackage.haskell.org": {
-      hackage();
-      break;
-    }
-    default:
-      break;
+  observe() {
+    super.observe();
+    this.observeBody();
   }
 }
 
-// 履歴書き換える系のSPAに効果があるかもしれない(未確認)
-window.addEventListener("popstate", replaceDate);
+// [Introduction | Hackage](http://hackage.haskell.org/)
+class Hackage extends Site {
+  // eslint-disable-next-line class-methods-use-this
+  replace() {
+    // XPathを使った結果の文字列を書き換える
+    function replaceTableDateTime(ths: XPathResult) {
+      const th = ths.iterateNext();
+      if (th instanceof HTMLElement) {
+        const next = th.nextElementSibling;
+        if (next instanceof HTMLElement) {
+          const dateTimeText = next.childNodes[next.childNodes.length - 1];
+          if (dateTimeText instanceof Text && dateTimeText.textContent) {
+            dateTimeText.textContent = dateTimeText.textContent.replace(
+              /( at )(.+)/,
+              (match, p1, p2) => {
+                const parsed = moment(p2, "dddd MMMM DD HH:mm:ss Z YYYY", "en");
+                // 数回呼び出されるからべき等性が保てない
+                if (parsed.isValid()) {
+                  return (
+                    p1 + parsed.locale(window.navigator.language).format("LLLL")
+                  );
+                }
+                return match;
+              }
+            );
+          }
+        }
+      }
+    }
 
-// AutoPagerizeでページが読み込まれた場合に対応
-document.body.addEventListener("AutoPagerize_DOMNodeInserted", replaceDate);
-
-// GitHubみたいにbody以下全部書き換えるサイトへの防衛術
-const observer = new MutationObserver(mutations => {
-  mutations.forEach(() => {
-    replaceDate();
-  });
-});
-
-Array.from(document.getElementsByTagName("body")).forEach(body => {
-  if (body instanceof HTMLElement) {
-    observer.observe(body, { childList: true });
+    replaceTableDateTime(
+      document.evaluate(
+        `//th[text() = "Revised"]`,
+        document,
+        null,
+        XPathResult.ANY_TYPE,
+        null
+      )
+    );
+    replaceTableDateTime(
+      document.evaluate(
+        `//th[text() = "Uploaded"]`,
+        document,
+        null,
+        XPathResult.ANY_TYPE,
+        null
+      )
+    );
   }
-});
+}
 
-// 初回の起動を行う
-replaceDate();
+// [Hot Questions - Stack Exchange](https://stackexchange.com/)
+class StackExchange extends Site {
+  // eslint-disable-next-line class-methods-use-this
+  replace() {
+    // エントリーの投稿日時
+    Array.from(
+      document.querySelectorAll(".relativetime, .relativetime-clean")
+    ).forEach(relativeTime => {
+      if (relativeTime instanceof HTMLElement) {
+        const title = relativeTime.getAttribute("title");
+        if (title) {
+          relativeTime.innerText = moment(title).format("LLLL");
+        }
+      }
+    });
+  }
+}
+
+// エントリーポイントにする関数
+function main() {
+  const site = Site.detect();
+  if (site) {
+    site.init();
+  }
+}
+
+// 起動
+main();

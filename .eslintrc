@@ -3,10 +3,16 @@
   "env": {
     "browser": true
   },
-  "extends": ["airbnb-base", "plugin:prettier/recommended"],
+  "extends": [
+    "airbnb-base",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint"
+  ],
   "plugins": ["@typescript-eslint", "mysticatea"],
   "rules": {
     "no-param-reassign": "off",
+    "no-use-before-define": ["error", { "classes": false }],
     "curly": ["error", "all"],
     "sort-imports": "error",
     "prefer-destructuring": [

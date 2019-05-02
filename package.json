@@ -3,8 +3,11 @@
   "scripts": {
     "build": "parcel build src/main.ts",
     "package": "yarn build && web-ext build --config web-ext-config.js",
-    "lint": "eslint --ignore-path .gitignore --ext .js --ext .ts .",
-    "fix": "yarn lint --fix"
+    "lint": "run-p lint:eslint lint:tsc",
+    "fix": "yarn fix:eslint",
+    "lint:eslint": "eslint --ignore-path .gitignore --ext .js --ext .ts .",
+    "fix:eslint": "yarn lint:eslint --fix",
+    "lint:tsc": "tsc --noEmit"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^1.7.0",
@@ -14,6 +17,7 @@
     "eslint-plugin-import": "^2.17.2",
     "eslint-plugin-mysticatea": "^4.2.4",
     "eslint-plugin-prettier": "^3.0.1",
+    "npm-run-all": "^4.1.5",
     "parcel": "^1.12.3",
     "parcel-bundler": "^1.12.3",
     "prettier": "^1.17.0",

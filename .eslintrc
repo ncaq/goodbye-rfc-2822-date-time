@@ -6,6 +6,7 @@
   "extends": ["airbnb-base", "plugin:prettier/recommended"],
   "plugins": ["@typescript-eslint", "mysticatea"],
   "rules": {
+    "no-param-reassign": "off",
     "curly": ["error", "all"],
     "sort-imports": "error",
     "prefer-destructuring": [

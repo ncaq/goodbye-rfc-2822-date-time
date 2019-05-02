@@ -3,6 +3,8 @@ import moment from "moment";
 // 他に全部のロケールを読み込む方法があれば誰か教えて下さい
 // せめてre exportしてファイルを分けたかったですがside effectを消去してしまうためうまくいかなかった
 
+/* eslint-disable sort-imports */
+
 import "moment/locale/af";
 import "moment/locale/ar";
 import "moment/locale/ar-dz";
@@ -131,25 +133,6 @@ import "moment/locale/zh-tw";
 // momentのグローバル地域設定
 moment.locale(window.navigator.language);
 
-function replaceDate() {
-  // tslint:disable-next-line:no-console
-  console.log("boot goodbye-rfc-2822-date-time: ", moment().format("LLLL"));
-  switch (true) {
-    case location.hostname === "github.com": {
-      github();
-      break;
-    }
-    case detectStackoverflow(): {
-      stackoverflow();
-      break;
-    }
-    case location.hostname === "hackage.haskell.org": {
-      hackage();
-      break;
-    }
-  }
-}
-
 // GitHub向けの書き換え
 function github() {
   // issueとか
@@ -191,8 +174,8 @@ function detectStackoverflow() {
   }
 
   return (
-    location.href.includes("stackexchange.com") ||
-    location.href.includes("stackoverflow.com") ||
+    window.location.href.includes("stackexchange.com") ||
+    window.location.href.includes("stackoverflow.com") ||
     detectByQuery()
   );
 }
@@ -258,6 +241,27 @@ function hackage() {
   );
 }
 
+function replaceDate() {
+  // eslint-disable-next-line no-console
+  console.log("boot goodbye-rfc-2822-date-time: ", moment().format("LLLL"));
+  switch (true) {
+    case window.location.hostname === "github.com": {
+      github();
+      break;
+    }
+    case detectStackoverflow(): {
+      stackoverflow();
+      break;
+    }
+    case window.location.hostname === "hackage.haskell.org": {
+      hackage();
+      break;
+    }
+    default:
+      break;
+  }
+}
+
 // 履歴書き換える系のSPAに効果があるかもしれない(未確認)
 window.addEventListener("popstate", replaceDate);
 
@@ -266,7 +270,7 @@ document.body.addEventListener("AutoPagerize_DOMNodeInserted", replaceDate);
 
 // GitHubみたいにbody以下全部書き換えるサイトへの防衛術
 const observer = new MutationObserver(mutations => {
-  mutations.forEach(_ => {
+  mutations.forEach(() => {
     replaceDate();
   });
 });

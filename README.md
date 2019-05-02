@@ -1,3 +1,8 @@
+[![Build Status](https://dev.azure.com/ncaq/goodbye-rfc-2822-date-time/_apis/build/status/ncaq.goodbye-rfc-2822-date-time?branchName=master)](https://dev.azure.com/ncaq/goodbye-rfc-2822-date-time/_build/latest?definitionId=1&branchName=master)
+![GitHub](https://img.shields.io/github/license/ncaq/goodbye-rfc-2822-date-time.svg)
+![Mozilla Add-on](https://img.shields.io/amo/users/goodbye-rfc-2822-date-time.svg)
+![Chrome Web Store](https://img.shields.io/chrome-web-store/users/ncpepaiocdmmmonbikofmggdphoheoge.svg)
+
 # goodbye-rfc-2822-date-time
 
 これはwebブラウザ向けの拡張機能です.
@@ -52,10 +57,3 @@ If used in Japanese, `Dec 22, 2018` will be converted to `2018年12月22日 土�
 # use library mainly
 
 [Moment.js](https://momentjs.com/)
-
-# How to package
-
-~~~
-% yarn
-% yarn package
-~~~

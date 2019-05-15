@@ -133,11 +133,7 @@ abstract class Site {
     // momentのグローバル地域設定.
     moment.locale(window.navigator.language);
     // eslint-disable-next-line no-console
-    console.log(
-      `goodbye-rfc-2822-date-time: type ${
-        this.constructor.name
-      }: time: ${moment().format("LLLL")}`
-    );
+    console.log(`goodbye-rfc-2822-date-time: ${moment().format("LLLL")}`);
   }
 
   // サイトを検知する.

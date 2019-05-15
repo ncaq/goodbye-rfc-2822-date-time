@@ -3,8 +3,9 @@
   "scripts": {
     "build": "parcel build src/main.ts",
     "package": "yarn build && web-ext build --config web-ext-config.js",
-    "lint": "run-p lint:eslint lint:tsc",
-    "fix": "yarn fix:eslint",
+    "run": "web-ext run --firefox-profile goodbye-rfc-2822-date-time",
+    "lint": "run-p lint:*",
+    "fix": "yarn fix:*",
     "lint:eslint": "eslint --ignore-path .gitignore --ext .js --ext .ts .",
     "fix:eslint": "yarn lint:eslint --fix",
     "lint:tsc": "tsc --noEmit"

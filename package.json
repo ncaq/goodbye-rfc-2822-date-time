@@ -1,9 +1,9 @@
 {
   "license": "MIT",
   "scripts": {
+    "start": "web-ext run --firefox-profile goodbye-rfc-2822-date-time",
     "build": "parcel build src/main.ts",
     "package": "yarn build && web-ext build --config web-ext-config.js",
-    "run": "web-ext run --firefox-profile goodbye-rfc-2822-date-time",
     "lint": "run-p lint:*",
     "fix": "yarn fix:*",
     "lint:eslint": "eslint --ignore-path .gitignore --ext .js --ext .ts .",

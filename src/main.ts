@@ -213,21 +213,35 @@ class GitHub extends Site {
   observe() {
     super.observe();
     this.observeBody();
+    // issueの日時は何かのイベントで自動的に書き換わってしまうのでそれに対応
+    const observer = new MutationObserver(mutations => {
+      mutations.forEach(() => {
+        // 本当は変更されたところの日時だけを書き換えるべきですが
+        // 書き換え処理はそこまで遅くないので手を抜きます
+        this.replace();
+      });
+    });
+    GitHub.relativeTimes().forEach(relativeTime => {
+      observer.observe(relativeTime, {
+        childList: true,
+        attributes: true,
+        characterData: true,
+        subtree: true
+      });
+    });
   }
 
   // eslint-disable-next-line class-methods-use-this
   replace() {
     // issueとか
-    [...document.getElementsByTagName("relative-time")].forEach(
-      relativeTime => {
-        if (relativeTime instanceof HTMLElement) {
-          const title = relativeTime.getAttribute("title");
-          if (title) {
-            relativeTime.innerText = title;
-          }
+    GitHub.relativeTimes().forEach(relativeTime => {
+      if (relativeTime instanceof HTMLElement) {
+        const title = relativeTime.getAttribute("title");
+        if (title) {
+          relativeTime.innerText = title;
         }
       }
-    );
+    });
     // コミット履歴の区切り
     [...document.getElementsByClassName("commit-group-title")].forEach(
       commitGroupTitle => {
@@ -241,6 +255,11 @@ class GitHub extends Site {
         }
       }
     );
+  }
+
+  // issueの日時など
+  static relativeTimes(): Element[] {
+    return [...document.getElementsByTagName("relative-time")];
   }
 }
 

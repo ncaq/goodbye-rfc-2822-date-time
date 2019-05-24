@@ -233,7 +233,7 @@ class GitHub extends Site {
 
   // eslint-disable-next-line class-methods-use-this
   replace() {
-    // issueとか
+    // issueの書き込み時間
     GitHub.relativeTimes().forEach(relativeTime => {
       if (relativeTime instanceof HTMLElement) {
         const title = relativeTime.getAttribute("title");
@@ -252,6 +252,40 @@ class GitHub extends Site {
               return p1 + moment(p2).format("LLLL");
             }
           );
+        }
+      }
+    );
+    // milestoneの期日
+    // 使えそうなclassが設定されてないのでカレンダーアイコンから日時を辿る
+    [...document.getElementsByClassName("octicon-calendar")].forEach(
+      svgOcticonCalendar => {
+        const iconParent = svgOcticonCalendar.parentElement;
+        console.log(iconParent);
+        if (iconParent instanceof HTMLElement) {
+          const milestoneMetaItem = iconParent.parentElement;
+          console.log(milestoneMetaItem);
+          if (milestoneMetaItem instanceof HTMLElement) {
+            const textNode =
+              milestoneMetaItem.childNodes[
+                milestoneMetaItem.childNodes.length - 1
+              ];
+            if (textNode instanceof Text) {
+              const text = textNode.wholeText.trim();
+              const parsed = moment(text, "[Due by] MMMM DD, YYYY", "en");
+              console.log(parsed);
+              if (parsed.isValid()) {
+                console.log(
+                  parsed.locale(window.navigator.language).format("LL")
+                );
+                milestoneMetaItem.replaceChild(
+                  document.createTextNode(
+                    parsed.locale(window.navigator.language).format("LL")
+                  ),
+                  textNode
+                );
+              }
+            }
+          }
         }
       }
     );

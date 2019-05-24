@@ -25,6 +25,7 @@
     "web-ext": "^3.0.0"
   },
   "dependencies": {
-    "moment": "^2.24.0"
+    "moment": "^2.24.0",
+    "sclude": "^0.1.1"
   }
 }

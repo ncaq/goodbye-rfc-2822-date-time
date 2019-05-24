@@ -221,14 +221,17 @@ class GitHub extends Site {
         this.replace();
       });
     });
-    GitHub.relativeTimes().forEach(relativeTime => {
-      observer.observe(relativeTime, {
+    // 書き換えを検知する要素は1つだけで十分
+    // 全部検知しようとしたら流石に重すぎた
+    const relativeTimeFirst = GitHub.relativeTimes()[0];
+    if (relativeTimeFirst) {
+      observer.observe(relativeTimeFirst, {
         childList: true,
         attributes: true,
         characterData: true,
         subtree: true
       });
-    });
+    }
   }
 
   // eslint-disable-next-line class-methods-use-this

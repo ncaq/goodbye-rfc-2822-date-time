@@ -6,7 +6,7 @@
     "package": "yarn build && web-ext build --config web-ext-config.js",
     "lint": "run-p lint:*",
     "fix": "yarn fix:*",
-    "lint:eslint": "eslint --ignore-path .gitignore --ext .js --ext .ts .",
+    "lint:eslint": "eslint --ignore-path .gitignore .",
     "fix:eslint": "yarn lint:eslint --fix",
     "lint:tsc": "tsc --noEmit"
   },

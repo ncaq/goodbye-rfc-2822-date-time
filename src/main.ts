@@ -173,14 +173,14 @@ abstract class Site {
     return undefined;
   }
 
-  // GitHubみたいにbody以下全部書き換えるサイトで再初期化を行う
+  // GitHubみたいにbody以下全部書き換えるサイトで検知して全書き換え
   observeBody() {
     const observer = new MutationObserver(mutations => {
       mutations.forEach(() => {
         this.replace();
       });
     });
-    Array.from(document.getElementsByTagName("body")).forEach(body => {
+    [...document.getElementsByTagName("body")].forEach(body => {
       if (body instanceof HTMLElement) {
         observer.observe(body, { childList: true });
       }
@@ -204,15 +204,21 @@ abstract class Site {
     window.addEventListener("popstate", () => this.replace());
   }
 
+  // 全画面の書き換え
   abstract replace(): void;
 }
 
 // [GitHub](https://github.com/)
 class GitHub extends Site {
+  observe() {
+    super.observe();
+    this.observeBody();
+  }
+
   // eslint-disable-next-line class-methods-use-this
   replace() {
     // issueとか
-    Array.from(document.getElementsByTagName("relative-time")).forEach(
+    [...document.getElementsByTagName("relative-time")].forEach(
       relativeTime => {
         if (relativeTime instanceof HTMLElement) {
           const title = relativeTime.getAttribute("title");
@@ -223,7 +229,7 @@ class GitHub extends Site {
       }
     );
     // コミット履歴の区切り
-    Array.from(document.getElementsByClassName("commit-group-title")).forEach(
+    [...document.getElementsByClassName("commit-group-title")].forEach(
       commitGroupTitle => {
         if (commitGroupTitle instanceof HTMLElement) {
           commitGroupTitle.innerText = commitGroupTitle.innerText.replace(
@@ -235,11 +241,6 @@ class GitHub extends Site {
         }
       }
     );
-  }
-
-  observe() {
-    super.observe();
-    this.observeBody();
   }
 }
 
@@ -299,9 +300,9 @@ class StackExchange extends Site {
   // eslint-disable-next-line class-methods-use-this
   replace() {
     // エントリーの投稿日時
-    Array.from(
-      document.querySelectorAll(".relativetime, .relativetime-clean")
-    ).forEach(relativeTime => {
+    [
+      ...document.querySelectorAll(".relativetime, .relativetime-clean")
+    ].forEach(relativeTime => {
       if (relativeTime instanceof HTMLElement) {
         const title = relativeTime.getAttribute("title");
         if (title) {

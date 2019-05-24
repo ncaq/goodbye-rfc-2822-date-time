@@ -5,7 +5,6 @@
     "outDir": "./dist",
     "sourceMap": true,
     "incremental": true,
-    "removeComments": false,
 
     "strict": true,
 

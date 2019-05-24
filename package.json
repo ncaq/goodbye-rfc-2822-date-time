@@ -4,6 +4,7 @@
     "start": "web-ext run --firefox-profile goodbye-rfc-2822-date-time",
     "build": "parcel build src/main.ts",
     "package": "yarn build && web-ext build --config web-ext-config.js",
+    "watch:lint": "watch 'yarn lint' src --interval=1",
     "lint": "run-p lint:*",
     "fix": "yarn fix:*",
     "lint:eslint": "eslint --ignore-path .gitignore .",
@@ -26,6 +27,7 @@
     "parcel-bundler": "^1.12.3",
     "prettier": "^1.17.0",
     "typescript": "^3.4.5",
+    "watch": "^1.0.2",
     "web-ext": "^3.0.0"
   }
 }

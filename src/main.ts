@@ -226,10 +226,7 @@ class GitHub extends Site {
     const relativeTimeFirst = GitHub.relativeTimes()[0];
     if (relativeTimeFirst) {
       observer.observe(relativeTimeFirst, {
-        childList: true,
-        attributes: true,
-        characterData: true,
-        subtree: true
+        characterData: true
       });
     }
   }

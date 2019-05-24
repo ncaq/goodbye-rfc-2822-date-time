@@ -260,10 +260,8 @@ class GitHub extends Site {
     [...document.getElementsByClassName("octicon-calendar")].forEach(
       svgOcticonCalendar => {
         const iconParent = svgOcticonCalendar.parentElement;
-        console.log(iconParent);
         if (iconParent instanceof HTMLElement) {
           const milestoneMetaItem = iconParent.parentElement;
-          console.log(milestoneMetaItem);
           if (milestoneMetaItem instanceof HTMLElement) {
             const textNode =
               milestoneMetaItem.childNodes[
@@ -272,11 +270,7 @@ class GitHub extends Site {
             if (textNode instanceof Text) {
               const text = textNode.wholeText.trim();
               const parsed = moment(text, "[Due by] MMMM DD, YYYY", "en");
-              console.log(parsed);
               if (parsed.isValid()) {
-                console.log(
-                  parsed.locale(window.navigator.language).format("LL")
-                );
                 milestoneMetaItem.replaceChild(
                   document.createTextNode(
                     parsed.locale(window.navigator.language).format("LL")

@@ -3,7 +3,7 @@
   "scripts": {
     "start": "web-ext run --firefox-profile goodbye-rfc-2822-date-time",
     "build": "parcel build src/main.ts",
-    "package": "yarn build && web-ext build --config web-ext-config.js",
+    "package": "yarn build --no-source-maps && web-ext build --config web-ext-config.js",
     "watch:lint": "watch 'yarn lint' src --interval=1",
     "lint": "run-p lint:*",
     "fix": "run-p fix:*",

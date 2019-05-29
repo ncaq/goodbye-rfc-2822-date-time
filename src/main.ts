@@ -128,6 +128,9 @@ import "moment/locale/zh-hk";
 import "moment/locale/zh-tw";
 
 abstract class Site {
+  // // 変更を監視しているオブジェクト
+  observers: MutationObserver[] = [];
+
   // 生成されたらmomentの地域設定してコンソールに起動したログを残す.
   constructor() {
     // momentのグローバル地域設定.
@@ -173,65 +176,37 @@ abstract class Site {
     return undefined;
   }
 
-  // GitHubみたいにbody以下全部書き換えるサイトで検知して全書き換え
-  observeBody() {
-    const observer = new MutationObserver(mutations => {
-      mutations.forEach(() => {
-        this.replace();
-      });
-    });
-    [...document.getElementsByTagName("body")].forEach(body => {
-      if (body instanceof HTMLElement) {
-        observer.observe(body, { childList: true });
-      }
-    });
-  }
-
-  // 普通の場合の初期化
+  // 普通の場合の初期化と書き換えの実行
   init() {
-    this.replace();
-    this.observe();
-  }
-
-  // 汎用的な監視
-  observe() {
     // AutoPagerizeでページが読み込まれた場合に対応
     document.body.addEventListener(
       "AutoPagerize_DOMNodeInserted",
-      this.replace
+      () => this.run
     );
     // 履歴書き換える系のSPAに効果があるかもしれない(未確認)
-    window.addEventListener("popstate", () => this.replace());
+    window.addEventListener("popstate", () => this.run);
+    this.run();
   }
 
-  // 全画面の書き換え
+  run() {
+    // 監視を中断し,
+    this.observers.forEach(observer => observer.disconnect());
+    this.observers = [];
+    // 全画面の書き換えを行い,
+    this.replace();
+    // 監視を再開する
+    this.observe();
+  }
+
+  // 実際の画面の書き換えを行う
   abstract replace(): void;
+
+  // サイトの監視を開始する
+  abstract observe(): void;
 }
 
 // [GitHub](https://github.com/)
 class GitHub extends Site {
-  observe() {
-    super.observe();
-    this.observeBody();
-    // issueの日時は何かのイベントで自動的に書き換わってしまうのでそれに対応
-    const observer = new MutationObserver(mutations => {
-      mutations.forEach(() => {
-        // 本当は変更されたところの日時だけを書き換えるべきですが
-        // 書き換え処理はそこまで遅くないので手を抜きます
-        this.replace();
-      });
-    });
-    // 書き換えを検知する要素は1つだけで十分
-    // 全部検知しようとしたら流石に重すぎた
-    const relativeTimeFirst = GitHub.relativeTimes()[0];
-    if (relativeTimeFirst) {
-      observer.observe(relativeTimeFirst, {
-        childList: true,
-        characterData: true
-      });
-    }
-  }
-
   // eslint-disable-next-line class-methods-use-this
   replace() {
     // issueの書き込み時間
@@ -284,6 +259,28 @@ class GitHub extends Site {
         }
       }
     );
+  }
+
+  observe() {
+    // GitHubはbody以下全部書き換えてページ遷移する(Turbolinks?)のでそれの監視
+    const observer = new MutationObserver(mutations => {
+      mutations.forEach(() => {
+        this.run();
+      });
+    });
+    this.observers.push(observer);
+    [...document.getElementsByTagName("body")].forEach(body => {
+      if (body instanceof HTMLElement) {
+        observer.observe(body, { childList: true });
+      }
+    });
+    // issueの日時は何かのイベントで自動的に書き換わってしまうのでそれに対応
+    // 書き換えを検知する要素は1つだけで十分
+    // 全部検知しようとしたら流石に重すぎた
+    const relativeTimeFirst = GitHub.relativeTimes()[0];
+    if (relativeTimeFirst) {
+      observer.observe(relativeTimeFirst, { childList: true });
+    }
   }
 
   // issueの日時など
@@ -341,6 +338,9 @@ class Hackage extends Site {
       )
     );
   }
+
+  // eslint-disable-next-line class-methods-use-this
+  observe() {}
 }
 
 // [Hot Questions - Stack Exchange](https://stackexchange.com/)
@@ -359,6 +359,9 @@ class StackExchange extends Site {
       }
     });
   }
+
+  // eslint-disable-next-line class-methods-use-this
+  observe() {}
 }
 
 // エントリーポイントにする関数

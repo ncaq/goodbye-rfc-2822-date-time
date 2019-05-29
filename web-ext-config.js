@@ -3,9 +3,10 @@ module.exports = {
     overwriteDest: true
   },
   ignoreFiles: [
-    "src",
     "README.md",
+    "azure-pipelines.yml",
     "package.json",
+    "src",
     "tsconfig.json",
     "web-ext-config.js",
     "yarn.lock"

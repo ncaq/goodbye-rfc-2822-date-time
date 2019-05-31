@@ -6,10 +6,8 @@
     "package": "yarn build --no-source-maps && web-ext build --config web-ext-config.js",
     "watch:lint": "watch 'yarn lint' src",
     "success": "echo -e '\\e[32mSuccess\\e[m'",
-    "lint": "run-p --print-label lint:*",
-    "postlint": "yarn success",
-    "fix": "run-p --print-label fix:*",
-    "postfix": "yarn success",
+    "lint": "run-p --print-label lint:* && yarn --silent success",
+    "fix": "run-p --print-label fix:* && yarn --silent success",
     "lint:eslint": "eslint --ignore-path .gitignore .",
     "fix:eslint": "yarn lint:eslint --fix",
     "lint:tsc": "tsc --noEmit"

@@ -5,8 +5,10 @@
     "build": "parcel build src/main.ts",
     "package": "yarn build --no-source-maps && web-ext build --config web-ext-config.js",
     "watch:lint": "watch 'yarn lint' src --interval=1",
-    "lint": "run-p lint:*",
-    "fix": "run-p fix:*",
+    "lint": "run-p --print-label lint:*",
+    "postlint": "echo -e '\\e[32mSuccess\\e[m'",
+    "fix": "run-p --print-label fix:*",
+    "postfix": "echo -e '\\e[32mSuccess\\e[m'",
     "lint:eslint": "eslint --ignore-path .gitignore .",
     "fix:eslint": "yarn lint:eslint --fix",
     "lint:tsc": "tsc --noEmit"

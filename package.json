@@ -4,7 +4,7 @@
     "start": "web-ext run --firefox-profile goodbye-rfc-2822-date-time",
     "build": "parcel build src/main.ts",
     "package": "yarn build --no-source-maps && web-ext build --config web-ext-config.js",
-    "watch:lint": "watch 'yarn lint' src --interval=1",
+    "watch:lint": "watch 'yarn lint' src",
     "success": "echo -e '\\e[32mSuccess\\e[m'",
     "lint": "run-p --print-label lint:*",
     "postlint": "yarn success",

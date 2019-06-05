@@ -4,13 +4,15 @@
     "start": "web-ext run --firefox-profile goodbye-rfc-2822-date-time",
     "build": "parcel build src/main.ts",
     "package": "yarn build --no-source-maps && web-ext build --config web-ext-config.js",
-    "watch:lint": "watch 'yarn lint' src",
-    "success": "echo -e '\\e[32mSuccess\\e[m'",
-    "lint": "run-p --print-label lint:* && yarn --silent success",
-    "fix": "run-p --print-label fix:* && yarn --silent success",
-    "lint:eslint": "eslint --ignore-path .gitignore .",
-    "fix:eslint": "yarn lint:eslint --fix",
-    "lint:tsc": "tsc --noEmit"
+    "watch:lint": "run-p --print-label watch:lint:*",
+    "watch:lint:eslint": "esw --watch --color --cache --ext ts src",
+    "watch:lint:tsc": "yarn lint:tsc --watch",
+    "clean": "git clean -d --interactive -x",
+    "lint": "run-p --print-label lint:*",
+    "lint:eslint": "eslint --ignore-path .gitignore --ext .ts .",
+    "lint:tsc": "tsc --noEmit",
+    "fix": "run-p --print-label fix:*",
+    "fix:eslint": "yarn lint:eslint --fix"
   },
   "dependencies": {
     "moment": "^2.24.0"
@@ -23,11 +25,11 @@
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-mysticatea": "^4.2.4",
     "eslint-plugin-prettier": "^3.0.1",
+    "eslint-watch": "^5.1.2",
     "npm-run-all": "^4.1.5",
     "parcel-bundler": "^1.12.3",
     "prettier": "^1.17.0",
     "typescript": "^3.4.5",
-    "watch": "^1.0.2",
     "web-ext": "^3.0.0"
   }
 }

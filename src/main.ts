@@ -176,8 +176,14 @@ abstract class Site {
     return undefined;
   }
 
-  // 普通の場合の初期化と書き換えの実行
+  // 初期化と書き換えの実行
   init() {
+    this.initListener();
+    this.run();
+  }
+
+  // 全てのページで行う初期監視
+  initListener() {
     // AutoPagerizeでページが読み込まれた場合に対応
     document.body.addEventListener(
       "AutoPagerize_DOMNodeInserted",
@@ -185,9 +191,9 @@ abstract class Site {
     );
     // 履歴書き換える系のSPAに効果があるかもしれない(未確認)
     window.addEventListener("popstate", () => this.run);
-    this.run();
   }
 
+  // ページに変更が入ったら呼び出される
   run() {
     // 監視を中断し,
     this.observers.forEach(observer => observer.disconnect());
@@ -202,6 +208,7 @@ abstract class Site {
   abstract replace(): void;
 
   // サイトの監視を開始する
+  // デフォルトでは
   abstract observe(): void;
 }
 

@@ -269,25 +269,27 @@ class GitHub extends Site {
   }
 
   observe() {
-    // GitHubはbody以下全部書き換えてページ遷移する(Turbolinks?)のでそれの監視
+    // GitHub固有のobserverを追加
     const observer = new MutationObserver(mutations => {
       mutations.forEach(() => {
         this.run();
       });
     });
     this.observers.push(observer);
+
+    // GitHubはbody以下全部書き換えてページ遷移する(Turbolinks?)のでそれの監視
     [...document.getElementsByTagName("body")].forEach(body => {
       if (body instanceof HTMLElement) {
         observer.observe(body, { childList: true });
       }
     });
     // issueの日時は何かのイベントで自動的に書き換わってしまうのでそれに対応
-    // 書き換えを検知する要素は1つだけで十分
-    // 全部検知しようとしたら流石に重すぎた
-    const relativeTimeFirst = GitHub.relativeTimes()[0];
-    if (relativeTimeFirst) {
-      observer.observe(relativeTimeFirst, { childList: true });
-    }
+    // 全部検知して全部書き換えしているので無駄な処理が発生していますが
+    // 所詮テキスト書き換えなのでそんなに重くないと思います
+    // 重いと思ったのは無限ループが発生していたからですね
+    GitHub.relativeTimes().forEach(relativeTime => {
+      observer.observe(relativeTime, { childList: true });
+    });
   }
 
   // issueの日時など

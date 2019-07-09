@@ -8,5 +8,5 @@ steps:
     displayName: "Install Node.js"
 
   - script: yarn install
-  - script: yarn lint
   - script: yarn package
+  - script: yarn lint

@@ -1,6 +1,3 @@
-trigger:
-  - master
-
 pool:
   vmImage: "Ubuntu-16.04"
 
@@ -10,7 +7,6 @@ steps:
       versionSpec: "10.x"
     displayName: "Install Node.js"
 
-  - script: |
-      yarn install
-      yarn lint
-      yarn package
+  - script: yarn install
+  - script: yarn package
+  - script: yarn lint

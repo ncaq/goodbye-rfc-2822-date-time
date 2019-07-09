@@ -15,6 +15,10 @@
     "fix": "run-p --print-label fix:*",
     "fix:eslint": "yarn lint:eslint --fix"
   },
+  "browserslist": [
+    "last 2 Chrome version",
+    "Firefox ESR"
+  ],
   "dependencies": {
     "moment": "^2.24.0"
   },

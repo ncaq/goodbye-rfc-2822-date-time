@@ -5,32 +5,30 @@
   },
   "extends": [
     "airbnb-base",
-    "prettier",
-    "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:import/errors",
+    "plugin:import/typescript",
+    "plugin:import/warnings",
+    "plugin:prettier/recommended",
+    "prettier",
     "prettier/@typescript-eslint"
   ],
-  "plugins": ["@typescript-eslint", "mysticatea"],
+  "plugins": ["@typescript-eslint", "import", "mysticatea"],
   "rules": {
-    "no-param-reassign": "off",
-    "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": ["error", { "classes": false }],
+    "mysticatea/no-instanceof-array": "error",
+    "mysticatea/no-instanceof-wrapper": "error",
+    "mysticatea/no-literal-call": "error",
+    "mysticatea/no-this-in-static": "error",
+    "mysticatea/no-use-ignored-vars": "error",
+    "mysticatea/no-useless-rest-spread": "error",
     "curly": ["error", "all"],
-    "sort-imports": "error",
+    "no-param-reassign": "off",
     "prefer-destructuring": [
       "error",
       {
         "array": false,
         "object": true
       }
-    ],
-    "@typescript-eslint/explicit-member-accessibility": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "mysticatea/no-instanceof-array": "error",
-    "mysticatea/no-instanceof-wrapper": "error",
-    "mysticatea/no-literal-call": "error",
-    "mysticatea/no-this-in-static": "error",
-    "mysticatea/no-use-ignored-vars": "error",
-    "mysticatea/no-useless-rest-spread": "error"
+    ]
   }
 }

@@ -4,7 +4,7 @@
     "browser": true
   },
   "extends": [
-    "airbnb-base",
+    "airbnb-typescript/base",
     "plugin:@typescript-eslint/recommended",
     "plugin:import/errors",
     "plugin:import/typescript",
@@ -13,22 +13,16 @@
     "prettier",
     "prettier/@typescript-eslint"
   ],
-  "plugins": ["@typescript-eslint", "import", "mysticatea"],
+  "plugins": ["@mysticatea", "@typescript-eslint", "import"],
   "rules": {
-    "mysticatea/no-instanceof-array": "error",
-    "mysticatea/no-instanceof-wrapper": "error",
-    "mysticatea/no-literal-call": "error",
-    "mysticatea/no-this-in-static": "error",
-    "mysticatea/no-use-ignored-vars": "error",
-    "mysticatea/no-useless-rest-spread": "error",
+    "@mysticatea/block-scoped-var": "error",
+    "@mysticatea/no-instanceof-array": "error",
+    "@mysticatea/no-instanceof-wrapper": "error",
+    "@mysticatea/no-literal-call": "error",
+    "@mysticatea/no-this-in-static": "error",
+    "@mysticatea/no-use-ignored-vars": "error",
+    "@mysticatea/no-useless-rest-spread": "error",
     "curly": ["error", "all"],
-    "no-param-reassign": "off",
-    "prefer-destructuring": [
-      "error",
-      {
-        "array": false,
-        "object": true
-      }
-    ]
+    "no-param-reassign": "off"
   }
 }

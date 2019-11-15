@@ -7,16 +7,12 @@
     "archive": "git archive HEAD --output=goodbye-rfc-2822-date-time.tar.gz",
     "watch": "FORCE_COLOR=1 run-p --print-label watch:*",
     "watch:build": "parcel watch src/main.ts",
-    "watch:lint": "FORCE_COLOR=1 run-p --print-label watch:lint:*",
-    "watch:lint:eslint": "esw --watch --color --cache --ext ts src",
-    "watch:lint:tsc": "yarn lint:tsc --watch",
+    "watch:lint": "esw --watch --color --cache --ext ts src",
     "clean": "git clean -d --interactive -x",
     "lint": "FORCE_COLOR=1 run-p --print-label lint:*",
     "lint:eslint": "eslint --ignore-path .gitignore --ext .ts .",
-    "lint:tsc": "tsc --pretty --noEmit",
     "lint:web-ext": "web-ext lint",
-    "fix": "FORCE_COLOR=1 run-p --print-label fix:*",
-    "fix:eslint": "yarn lint:eslint --fix"
+    "fix": "yarn lint:eslint --fix"
   },
   "browserslist": [
     "last 2 Chrome version",
@@ -36,6 +32,7 @@
     "eslint-config-prettier": "^6.2.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-tsc": "^1.2.0",
     "eslint-watch": "^6.0.0",
     "npm-run-all": "^4.1.5",
     "parcel-bundler": "^1.12.3",

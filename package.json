@@ -7,40 +7,37 @@
     "archive": "git archive HEAD --output=goodbye-rfc-2822-date-time.tar.gz",
     "watch": "FORCE_COLOR=1 run-p --print-label watch:*",
     "watch:build": "parcel watch src/main.ts",
-    "watch:lint": "FORCE_COLOR=1 run-p --print-label watch:lint:*",
-    "watch:lint:eslint": "esw --watch --color --cache --ext ts src",
-    "watch:lint:tsc": "yarn lint:tsc --watch",
+    "watch:lint": "esw --watch --color --cache --ext ts src",
     "clean": "git clean -d --interactive -x",
     "lint": "FORCE_COLOR=1 run-p --print-label lint:*",
     "lint:eslint": "eslint --ignore-path .gitignore --ext .ts .",
-    "lint:tsc": "tsc --pretty --noEmit",
     "lint:web-ext": "web-ext lint",
-    "fix": "FORCE_COLOR=1 run-p --print-label fix:*",
-    "fix:eslint": "yarn lint:eslint --fix"
+    "fix": "yarn lint:eslint --fix"
   },
   "browserslist": [
     "last 2 Chrome version",
     "Firefox ESR"
   ],
   "dependencies": {
-    "core-js": "^3.2.1",
+    "core-js": "^3.4.1",
     "moment": "^2.24.0",
     "regenerator-runtime": "^0.13.3"
   },
   "devDependencies": {
-    "@mysticatea/eslint-plugin": "^11.0.0",
-    "@typescript-eslint/eslint-plugin": "^2.1.0",
-    "@typescript-eslint/parser": "^2.1.0",
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb-typescript": "^4.0.1",
-    "eslint-config-prettier": "^6.2.0",
+    "@mysticatea/eslint-plugin": "^13.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.7.0",
+    "@typescript-eslint/parser": "^2.7.0",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-typescript": "^6.3.0",
+    "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-prettier": "^3.0.1",
-    "eslint-watch": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-tsc": "^1.2.0",
+    "eslint-watch": "^6.0.1",
     "npm-run-all": "^4.1.5",
-    "parcel-bundler": "^1.12.3",
-    "prettier": "^1.17.0",
-    "typescript": "3.5.3",
-    "web-ext": "^3.1.1"
+    "parcel-bundler": "^1.12.4",
+    "prettier": "^1.19.1",
+    "typescript": "^3.7.2",
+    "web-ext": "^3.2.1"
   }
 }

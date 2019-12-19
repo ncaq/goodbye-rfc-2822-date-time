@@ -18,9 +18,8 @@ jobs:
           key: v1-yarn-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
-      - run: yarn build
+      - run: yarn package
       - run: yarn lint
-      - run: yarn archive
       - store_artifacts:
           path: web-ext-artifacts
       - store_artifacts:

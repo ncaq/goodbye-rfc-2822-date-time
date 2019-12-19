@@ -4,7 +4,6 @@ module.exports = {
   },
   ignoreFiles: [
     "README.md",
-    "azure-pipelines.yml",
     "package.json",
     "src",
     "tsconfig.json",

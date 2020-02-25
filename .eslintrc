@@ -1,8 +1,9 @@
 {
   "parser": "@typescript-eslint/parser",
-  "env": {
-    "browser": true
+  "parserOptions": {
+    "project": "./tsconfig.json"
   },
+  "plugins": ["@mysticatea", "@typescript-eslint", "import", "tsc"],
   "extends": [
     "airbnb-typescript/base",
     "plugin:@typescript-eslint/recommended",
@@ -13,7 +14,9 @@
     "prettier",
     "prettier/@typescript-eslint"
   ],
-  "plugins": ["@mysticatea", "@typescript-eslint", "import", "tsc"],
+  "env": {
+    "browser": true
+  },
   "rules": {
     "@mysticatea/block-scoped-var": "error",
     "@mysticatea/no-instanceof-array": "error",

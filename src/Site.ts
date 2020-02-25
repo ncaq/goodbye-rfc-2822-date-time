@@ -44,6 +44,5 @@ export default abstract class Site {
   abstract replace(): void;
 
   // サイトの監視を開始する
-  // デフォルトでは
   abstract observe(): void;
 }

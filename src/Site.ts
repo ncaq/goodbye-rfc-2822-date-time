@@ -32,7 +32,7 @@ export default abstract class Site {
   // ページに変更が入ったら呼び出される
   run(): void {
     // 監視を中断し,
-    this.observers.forEach(observer => observer.disconnect());
+    this.observers.forEach((observer) => observer.disconnect());
     this.observers = [];
     // 全画面の書き換えを行い,
     this.replace();

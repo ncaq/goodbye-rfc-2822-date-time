@@ -7,7 +7,7 @@ export default class GitHub extends Site {
   // eslint-disable-next-line class-methods-use-this
   replace(): void {
     // issueの書き込み時間
-    GitHub.relativeTimes().forEach(relativeTime => {
+    GitHub.relativeTimes().forEach((relativeTime) => {
       if (relativeTime instanceof HTMLElement) {
         const title = relativeTime.getAttribute("title");
         if (title) {
@@ -17,7 +17,7 @@ export default class GitHub extends Site {
     });
     // コミット履歴の区切り
     [...document.getElementsByClassName("commit-group-title")].forEach(
-      commitGroupTitle => {
+      (commitGroupTitle) => {
         if (commitGroupTitle instanceof HTMLElement) {
           commitGroupTitle.innerText = commitGroupTitle.innerText.replace(
             /(Commits on )(\w+ \d+, \d+)/,
@@ -33,7 +33,7 @@ export default class GitHub extends Site {
     // milestoneの期日
     // 使えそうなclassが設定されてないのでカレンダーアイコンから日時を辿る
     [...document.getElementsByClassName("octicon-calendar")].forEach(
-      svgOcticonCalendar => {
+      (svgOcticonCalendar) => {
         const iconParent = svgOcticonCalendar.parentElement;
         if (iconParent instanceof HTMLElement) {
           const milestoneMetaItem = iconParent.parentElement;
@@ -70,7 +70,7 @@ export default class GitHub extends Site {
     this.observers.push(observer);
 
     // GitHubはbody以下全部書き換えてページ遷移する(Turbolinks?)のでそれの監視
-    [...document.getElementsByTagName("body")].forEach(body => {
+    [...document.getElementsByTagName("body")].forEach((body) => {
       if (body instanceof HTMLElement) {
         observer.observe(body, { childList: true });
       }
@@ -79,7 +79,7 @@ export default class GitHub extends Site {
     // 全部検知して全部書き換えしているので無駄な処理が発生していますが
     // 所詮テキスト書き換えなのでそんなに重くないと思います
     // 重いと思ったのは無限ループが発生していたからですね
-    GitHub.relativeTimes().forEach(relativeTime => {
+    GitHub.relativeTimes().forEach((relativeTime) => {
       observer.observe(relativeTime, { childList: true });
     });
   }

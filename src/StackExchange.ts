@@ -8,8 +8,8 @@ export default class StackExchange extends Site {
   replace(): void {
     // エントリーの投稿日時
     [
-      ...document.querySelectorAll(".relativetime, .relativetime-clean")
-    ].forEach(relativeTime => {
+      ...document.querySelectorAll(".relativetime, .relativetime-clean"),
+    ].forEach((relativeTime) => {
       if (relativeTime instanceof HTMLElement) {
         const title = relativeTime.getAttribute("title");
         if (title) {

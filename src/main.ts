@@ -152,7 +152,7 @@ function detect(): Site | undefined {
       "stackexchange.com",
       "stackoverflow.com",
       "superuser.com",
-      "askubuntu.com"
+      "askubuntu.com",
     ].includes(window.location.hostname)
   ) {
     return new StackExchange();

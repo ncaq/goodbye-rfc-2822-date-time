@@ -5,12 +5,12 @@
   "short_name": "goodbye-2822",
   "description": "I hate the date and time notation method like RFC 2822. This extension converts time notation to native language.",
 
-  "version": "1.0.1",
+  "version": "2.0.0",
 
   "applications": {
     "gecko": {
       "id": "goodbye-rfc-2822-date-time@ncaq.net",
-      "strict_min_version": "64.0"
+      "strict_min_version": "68.0"
     }
   },
 

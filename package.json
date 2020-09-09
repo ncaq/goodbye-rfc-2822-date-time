@@ -20,9 +20,7 @@
     "Firefox ESR"
   ],
   "dependencies": {
-    "core-js": "^3.6.4",
-    "moment": "^2.24.0",
-    "regenerator-runtime": "^0.13.3"
+    "moment": "^2.24.0"
   },
   "devDependencies": {
     "@mysticatea/eslint-plugin": "^13.0.0",

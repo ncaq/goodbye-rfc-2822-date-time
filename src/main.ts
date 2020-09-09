@@ -1,6 +1,3 @@
-import "core-js/stable";
-import "regenerator-runtime/runtime";
-
 // 他に全部のロケールを読み込む方法があれば誰か教えて下さい
 // せめてre exportしてファイルを分けたかったですがside effectを消去してしまうためうまくいかなかった
 import "moment/locale/af";

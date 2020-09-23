@@ -1,7 +1,7 @@
 // 他に全部のロケールを読み込む方法があれば誰か教えて下さい
 // せめてre exportしてファイルを分けたかったですがside effectを消去してしまうためうまくいかなかった
-import "moment/locale/af";
 import "moment/locale/ar";
+import "moment/locale/af";
 import "moment/locale/ar-dz";
 import "moment/locale/ar-kw";
 import "moment/locale/ar-ly";
@@ -125,9 +125,9 @@ import "moment/locale/zh-cn";
 import "moment/locale/zh-hk";
 import "moment/locale/zh-tw";
 
-import Site from "./Site";
 import GitHub from "./GitHub";
 import Hackage from "./Hackage";
+import Site from "./Site";
 import StackExchange from "./StackExchange";
 
 // サイトを検知する.

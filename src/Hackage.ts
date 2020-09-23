@@ -1,5 +1,4 @@
 import moment from "moment";
-
 import Site from "./Site";
 
 // [Introduction | Hackage](http://hackage.haskell.org/)

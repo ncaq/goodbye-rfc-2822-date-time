@@ -26,9 +26,16 @@
     "@mysticatea/no-use-ignored-vars": "error",
     "@mysticatea/no-useless-rest-spread": "error",
     "tsc/config": [
-      1,
+      "error",
       {
         "configFile": "tsconfig.json"
+      }
+    ],
+
+    "import/order": [
+      "error",
+      {
+        "alphabetize": { "order": "asc" }
       }
     ],
 

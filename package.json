@@ -10,7 +10,7 @@
     "watch:lint": "esw --watch --color --cache --ext ts src",
     "clean": "git clean -d --interactive -x",
     "lint": "FORCE_COLOR=1 run-p --print-label lint:*",
-    "lint:eslint": "eslint --ignore-path .gitignore --ext .ts .",
+    "lint:eslint": "eslint --ignore-path .gitignore --cache --ext .ts .",
     "lint:tsc": "tsc --noEmit",
     "lint:web-ext": "web-ext lint",
     "fix": "yarn lint:eslint --fix"

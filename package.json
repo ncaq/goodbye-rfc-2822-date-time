@@ -1,42 +1,44 @@
 {
   "license": "MIT",
   "scripts": {
-    "start": "web-ext run --firefox-profile goodbye-rfc-2822-date-time",
-    "build": "parcel build src/main.ts",
-    "package": "yarn build --no-source-maps && web-ext build --config web-ext-config.js && yarn archive",
     "archive": "git archive HEAD --output=goodbye-rfc-2822-date-time.tar.gz",
-    "watch": "FORCE_COLOR=1 run-p --print-label watch:*",
-    "watch:build": "parcel watch src/main.ts",
-    "watch:lint": "esw --watch --color --cache --ext ts src",
+    "build": "parcel build src/main.ts",
     "clean": "git clean -d --interactive -x",
+    "fix": "FORCE_COLOR=1 run-p --print-label fix:*",
+    "fix:eslint": "yarn lint:eslint --fix",
+    "fix:prettier": "yarn lint:prettier --write",
     "lint": "FORCE_COLOR=1 run-p --print-label lint:*",
     "lint:eslint": "eslint --ignore-path .gitignore --cache --ext .ts .",
-    "lint:tsc": "tsc --noEmit",
+    "lint:prettier": "prettier --ignore-path .gitignore --check **/*.{ts,json}",
     "lint:web-ext": "web-ext lint",
-    "fix": "yarn lint:eslint --fix"
+    "package": "yarn build --no-source-maps && web-ext build --config web-ext-config.js && yarn archive",
+    "start": "web-ext run --firefox-profile goodbye-rfc-2822-date-time",
+    "watch": "FORCE_COLOR=1 run-p --print-label watch:*",
+    "watch:build": "parcel watch src/main.ts",
+    "watch:lint": "esw --watch --color --cache --ext ts src"
   },
   "browserslist": [
     "last 2 Chrome version",
     "Firefox ESR"
   ],
   "dependencies": {
-    "moment": "^2.24.0"
+    "moment": "^2.29.0"
   },
   "devDependencies": {
     "@mysticatea/eslint-plugin": "^13.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.1.0",
-    "@typescript-eslint/parser": "^4.1.0",
-    "eslint": "^7.8.1",
-    "eslint-config-airbnb-typescript": "^10.0.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-import": "^2.20.1",
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/parser": "^4.3.0",
+    "eslint": "^7.10.0",
+    "eslint-config-airbnb-typescript": "^11.0.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-tsc": "^2.0.0",
     "eslint-watch": "^7.0.0",
     "npm-run-all": "^4.1.5",
     "parcel-bundler": "^1.12.4",
     "prettier": "^2.1.1",
-    "typescript": "^4.0.2",
-    "web-ext": "^5.0.0"
+    "typescript": "^4.0.3",
+    "web-ext": "^5.1.0"
   }
 }

@@ -1,23 +1,22 @@
-{
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "project": "./tsconfig.json"
+module.exports = {
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    project: `${__dirname}/tsconfig.json`,
   },
-  "plugins": ["@mysticatea", "@typescript-eslint", "import", "tsc"],
-  "extends": [
-    "airbnb-typescript/base",
+  plugins: ["@mysticatea", "@typescript-eslint", "import", "tsc"],
+  extends: [
+    "plugin:@mysticatea/+node",
     "plugin:@typescript-eslint/recommended",
     "plugin:import/errors",
     "plugin:import/typescript",
     "plugin:import/warnings",
-    "plugin:prettier/recommended",
     "prettier",
-    "prettier/@typescript-eslint"
+    "prettier/@typescript-eslint",
   ],
-  "env": {
-    "browser": true
+  env: {
+    browser: true,
   },
-  "rules": {
+  rules: {
     "@mysticatea/block-scoped-var": "error",
     "@mysticatea/no-instanceof-array": "error",
     "@mysticatea/no-instanceof-wrapper": "error",
@@ -28,18 +27,18 @@
     "tsc/config": [
       "error",
       {
-        "configFile": "tsconfig.json"
-      }
+        configFile: `${__dirname}/tsconfig.json`,
+      },
     ],
 
     "import/order": [
       "error",
       {
-        "alphabetize": { "order": "asc" }
-      }
+        alphabetize: { order: "asc" },
+      },
     ],
 
-    "curly": ["error", "all"],
-    "no-param-reassign": "off"
-  }
-}
+    curly: ["error", "all"],
+    "no-param-reassign": "off",
+  },
+};

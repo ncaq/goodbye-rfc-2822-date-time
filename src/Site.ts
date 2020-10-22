@@ -19,7 +19,7 @@ export default abstract class Site {
   }
 
   // 全てのページで行う初期監視
-  initListener(): void {
+  private initListener(): void {
     // AutoPagerizeでページが読み込まれた場合に対応
     document.body.addEventListener(
       "AutoPagerize_DOMNodeInserted",
@@ -30,7 +30,7 @@ export default abstract class Site {
   }
 
   // ページに変更が入ったら呼び出される
-  run(): void {
+  run = (): void => {
     // 監視を中断し,
     this.observers.forEach((observer) => observer.disconnect());
     this.observers = [];
@@ -38,7 +38,7 @@ export default abstract class Site {
     this.replace();
     // 監視を再開する
     this.observe();
-  }
+  };
 
   // 実際の画面の書き換えを行う
   abstract replace(): void;

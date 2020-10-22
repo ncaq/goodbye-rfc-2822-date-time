@@ -5,8 +5,9 @@ module.exports = {
   },
   plugins: ["@mysticatea", "@typescript-eslint", "import", "tsc"],
   extends: [
-    "plugin:@mysticatea/+node",
+    "airbnb-typescript/base",
     "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:import/errors",
     "plugin:import/typescript",
     "plugin:import/warnings",

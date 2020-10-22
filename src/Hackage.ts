@@ -15,13 +15,13 @@ export default class Hackage extends Site {
           if (dateTimeText instanceof Text && dateTimeText.textContent) {
             dateTimeText.textContent = dateTimeText.textContent.replace(
               /( at )(.+)/,
-              (match, p1, p2) => {
+              (match, p1: string, p2: string) => {
                 const parsed = moment(p2, "dddd MMMM DD HH:mm:ss Z YYYY", "en");
                 // 数回呼び出されるからべき等性が保てない
                 if (parsed.isValid()) {
-                  return (
-                    p1 + parsed.locale(window.navigator.language).format("LLLL")
-                  );
+                  return `${p1} ${parsed
+                    .locale(window.navigator.language)
+                    .format("LLLL")}`;
                 }
                 return match;
               }

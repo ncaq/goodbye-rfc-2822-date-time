@@ -20,11 +20,10 @@ export default class GitHub extends Site {
         if (commitGroupTitle instanceof HTMLElement) {
           commitGroupTitle.innerText = commitGroupTitle.innerText.replace(
             /(Commits on )(\w+ \d+, \d+)/,
-            (_, p1, p2) =>
-              p1 +
-              moment(p2, "MMMM DD, YYYY", "en")
+            (_, p1: string, p2: string) =>
+              `${p1} + ${moment(p2, "MMMM DD, YYYY", "en")
                 .locale(window.navigator.language)
-                .format("LLLL")
+                .format("LLLL")}`
           );
         }
       }

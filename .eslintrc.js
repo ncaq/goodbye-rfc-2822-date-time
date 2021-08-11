@@ -12,7 +12,6 @@ module.exports = {
     "plugin:import/typescript",
     "plugin:import/warnings",
     "prettier",
-    "prettier/@typescript-eslint",
   ],
   env: {
     browser: true,

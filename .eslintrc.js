@@ -3,8 +3,9 @@ module.exports = {
   parserOptions: {
     project: `${__dirname}/tsconfig.json`,
   },
-  plugins: ["@mysticatea", "@typescript-eslint", "import"],
+  plugins: ["@typescript-eslint", "import"],
   extends: [
+    "airbnb-base",
     "airbnb-typescript/base",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
@@ -17,14 +18,6 @@ module.exports = {
     browser: true,
   },
   rules: {
-    "@mysticatea/block-scoped-var": "error",
-    "@mysticatea/no-instanceof-array": "error",
-    "@mysticatea/no-instanceof-wrapper": "error",
-    "@mysticatea/no-literal-call": "error",
-    "@mysticatea/no-this-in-static": "error",
-    "@mysticatea/no-use-ignored-vars": "error",
-    "@mysticatea/no-useless-rest-spread": "error",
-
     "import/order": [
       "error",
       {

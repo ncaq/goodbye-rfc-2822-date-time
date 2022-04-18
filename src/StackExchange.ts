@@ -1,4 +1,4 @@
-import moment from "moment";
+import dayjs from "dayjs";
 import Site from "./Site";
 
 // [Hot Questions - Stack Exchange](https://stackexchange.com/)
@@ -12,9 +12,9 @@ export default class StackExchange extends Site {
         if (title == null) {
           return;
         }
-        const m = moment(title);
-        if (m.isValid()) {
-          relativeTime.innerText = m.format("LLLL");
+        const parsed = dayjs(title);
+        if (parsed.isValid()) {
+          relativeTime.innerText = parsed.format("lll");
         }
       }
     });
@@ -26,9 +26,9 @@ export default class StackExchange extends Site {
           if (t == null) {
             return;
           }
-          const m = moment(t);
-          if (m.isValid()) {
-            relativeTime.innerText = m.format("LLLL");
+          const parsed = dayjs(t);
+          if (parsed.isValid()) {
+            relativeTime.innerText = parsed.format("lll");
           }
         }
       }

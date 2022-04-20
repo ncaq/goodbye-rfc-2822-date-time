@@ -2,7 +2,7 @@
   "license": "MIT",
   "scripts": {
     "archive": "git archive HEAD --output=goodbye-rfc-2822-date-time.tar.gz",
-    "build": "parcel build src/main.ts",
+    "build": "node build/locale.js && parcel build src/main.ts",
     "clean": "git clean -d --interactive -x",
     "fix": "FORCE_COLOR=1 run-p --print-label fix:*",
     "fix:eslint": "yarn lint:eslint --fix",
@@ -35,6 +35,6 @@
     "web-ext": "^6.2.0"
   },
   "dependencies": {
-    "moment": "^2.29.1"
+    "dayjs": "^1.11.1"
   }
 }

@@ -1,4 +1,4 @@
-import moment from "moment";
+import dayjs from "dayjs";
 import Site from "./Site";
 
 // [GitHub](https://github.com/)
@@ -15,15 +15,18 @@ export default class GitHub extends Site {
       }
     });
     // コミット履歴の区切り
-    [...document.getElementsByClassName("commit-group-title")].forEach(
+    [...document.querySelectorAll(".TimelineItem-body > h2")].forEach(
       (commitGroupTitle) => {
         if (commitGroupTitle instanceof HTMLElement) {
           commitGroupTitle.innerText = commitGroupTitle.innerText.replace(
             /(Commits on )(\w+ \d+, \d+)/,
-            (_, p1: string, p2: string) =>
-              `${p1} + ${moment(p2, "MMMM DD, YYYY", "en")
-                .locale(window.navigator.language)
-                .format("LLLL")}`
+            (match, p1: string, p2: string) => {
+              const parsed = dayjs(p2, "ll");
+              if (parsed.isValid()) {
+                return p1 + parsed.format("ll");
+              }
+              return match;
+            }
           );
         }
       }
@@ -36,21 +39,21 @@ export default class GitHub extends Site {
         if (iconParent instanceof HTMLElement) {
           const milestoneMetaItem = iconParent.parentElement;
           if (milestoneMetaItem instanceof HTMLElement) {
-            const textNode =
-              milestoneMetaItem.childNodes[
-                milestoneMetaItem.childNodes.length - 1
-              ];
+            const textNode = milestoneMetaItem.lastChild;
             if (textNode instanceof Text) {
-              const text = textNode.wholeText.trim();
-              const parsed = moment(text, "[Due by] MMMM DD, YYYY", "en");
-              if (parsed.isValid()) {
-                milestoneMetaItem.replaceChild(
-                  document.createTextNode(
-                    parsed.locale(window.navigator.language).format("LL")
-                  ),
-                  textNode
+              const text = textNode.wholeText
+                .trimEnd()
+                .replace(
+                  /(\s*Due by )(\w+ \d+, \d+)/,
+                  (match, p1: string, p2: string) => {
+                    const parsed = dayjs(p2, "LL");
+                    if (parsed.isValid()) {
+                      return p1 + parsed.format("LL");
+                    }
+                    return match;
+                  }
                 );
-              }
+              textNode.replaceWith(document.createTextNode(text));
             }
           }
         }

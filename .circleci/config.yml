@@ -28,3 +28,9 @@ jobs:
           path: web-ext-artifacts
       - store_artifacts:
           path: goodbye-rfc-2822-date-time.tar.gz
+
+workflows:
+  version: 2
+  lint-deploy:
+    jobs:
+      - lint

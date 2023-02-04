@@ -1,8 +1,14 @@
 version: 2.1
-jobs:
-  build:
+
+executors:
+  nodejs:
     docker:
-      - image: cimg/node:16.14
+      - image: cimg/node:18.13
+    working_directory: ~/goodbye-rfc-2822-date-time
+
+jobs:
+  lint:
+    executor: nodejs
     steps:
       - checkout
       - restore_cache:
@@ -10,17 +16,21 @@ jobs:
           keys:
             - v1-yarn-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
             - v1-yarn-{{ checksum "package.json" }}-
-      - run:
-          name: Install yarn Dependencies
-          command: yarn install --frozen-lockfile
+      - run: yarn install --frozen-lockfile
+      - run: yarn package
+      - run: yarn lint
       - save_cache:
           name: Save Yarn Package Cache
           key: v1-yarn-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
-      - run: yarn package
-      - run: yarn lint
       - store_artifacts:
           path: web-ext-artifacts
       - store_artifacts:
           path: goodbye-rfc-2822-date-time.tar.gz
+
+workflows:
+  version: 2
+  lint-deploy:
+    jobs:
+      - lint

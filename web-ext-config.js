@@ -1,6 +1,7 @@
 module.exports = {
   build: {
-    overwriteDest: true
+    overwriteDest: true,
+    filename: "goodbye-rfc-2822-date-time.zip",
   },
   ignoreFiles: [
     "README.md",
@@ -8,6 +9,10 @@ module.exports = {
     "src",
     "tsconfig.json",
     "web-ext-config.js",
-    "yarn.lock"
-  ]
+    "yarn.lock",
+  ],
+  run: {
+    devtools: true,
+    firefoxProfile: "goodbye-rfc-2822-date-time",
+  },
 };

@@ -7,7 +7,7 @@
 
   "version": "3.0.0",
 
-  "applications": {
+  "browser_specific_settings": {
     "gecko": {
       "id": "goodbye-rfc-2822-date-time@ncaq.net",
       "strict_min_version": "68.0"

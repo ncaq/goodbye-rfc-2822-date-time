@@ -1,5 +1,4 @@
 module.exports = {
-  verbose: true,
   build: {
     overwriteDest: true,
     filename: "goodbye-rfc-2822-date-time.zip",

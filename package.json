@@ -12,7 +12,7 @@
     "lint:prettier": "prettier --ignore-unknown --check '**/*.{js,jsx,ts,tsx,json,html,css,less,sass,scss,yml,yaml}'",
     "lint:tsc": "tsc --noEmit",
     "lint:web-ext": "web-ext lint",
-    "package": "yarn build --no-source-maps && web-ext build && yarn archive",
+    "package": "rm -rf dist/ && yarn build --no-source-maps && web-ext build && yarn archive",
     "start": "web-ext run",
     "watch": "parcel watch src/main.ts"
   },

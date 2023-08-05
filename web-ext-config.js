@@ -4,7 +4,10 @@ module.exports = {
     filename: "goodbye-rfc-2822-date-time.zip",
   },
   ignoreFiles: [
+    "**/*.map",
+    "*.tar.gz",
     "README.md",
+    "build",
     "package.json",
     "src",
     "tsconfig.json",

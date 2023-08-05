@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import Site from "./Site";
 
-// [GitHub](https://github.com/)
+/** [GitHub](https://github.com/) */
 export default class GitHub extends Site {
   // eslint-disable-next-line class-methods-use-this
   replace(): void {

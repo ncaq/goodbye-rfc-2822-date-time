@@ -3,8 +3,10 @@ import Hackage from "./Hackage";
 import Site from "./Site";
 import StackExchange from "./StackExchange";
 
-// サイトを検知する.
-// 検知できなかったら`undefined`を返します.
+/**
+ * サイトを検知します。
+ * 検知できなかったら`undefined`を返します。
+ */
 function detect(): Site | undefined {
   // GitHub
   if (window.location.hostname === "github.com") {
@@ -40,7 +42,7 @@ function detect(): Site | undefined {
   return undefined;
 }
 
-// エントリーポイントにする関数
+/** エントリーポイントにする関数です。 */
 function main(): void {
   const site = detect();
   if (site) {

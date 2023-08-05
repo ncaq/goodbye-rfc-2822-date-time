@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import Site from "./Site";
 
-// [Hot Questions - Stack Exchange](https://stackexchange.com/)
+/** [Hot Questions - Stack Exchange](https://stackexchange.com/) */
 export default class StackExchange extends Site {
   // eslint-disable-next-line class-methods-use-this
   replace(): void {

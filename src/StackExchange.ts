@@ -31,7 +31,7 @@ export default class StackExchange extends Site {
             relativeTime.innerText = parsed.format("lll");
           }
         }
-      }
+      },
     );
   }
 

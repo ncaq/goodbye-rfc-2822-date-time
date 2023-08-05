@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import Site from "./Site";
 
-// [Introduction | Hackage](http://hackage.haskell.org/)
+/** [Introduction | Hackage](http://hackage.haskell.org/) */
 export default class Hackage extends Site {
   // eslint-disable-next-line class-methods-use-this
   replace(): void {

@@ -3,10 +3,10 @@ import localizedFormat from "dayjs/plugin/localizedFormat";
 import { defaultLocale } from "./getLocale";
 
 export default abstract class Site {
-  // 変更を監視しているオブジェクト
+  /** 変更を監視しているオブジェクト */
   observers: MutationObserver[] = [];
 
-  // 生成されたらdayjsの地域設定してコンソールに起動したログを残す.
+  /** 生成されたらdayjsの地域設定してコンソールに起動したログを残します。 */
   constructor() {
     dayjs.extend(localizedFormat);
     // dayjsのグローバル地域設定.
@@ -15,13 +15,13 @@ export default abstract class Site {
     console.log(`goodbye-rfc-2822-date-time: ${dayjs().format("LLLL")}`);
   }
 
-  // 初期化と書き換えの実行
+  /** 初期化と書き換えの実行。 */
   init(): void {
     this.initListener();
     this.run();
   }
 
-  // 全てのページで行う初期監視
+  /** 全てのページで行う初期監視。 */
   private initListener(): void {
     // AutoPagerizeでページが読み込まれた場合に対応
     document.body.addEventListener(
@@ -32,7 +32,7 @@ export default abstract class Site {
     window.addEventListener("popstate", () => this.run);
   }
 
-  // ページに変更が入ったら呼び出される
+  /** ページに変更が入ったら呼び出されます。 */
   run = (): void => {
     // 監視を中断し,
     this.observers.forEach((observer) => observer.disconnect());
@@ -43,9 +43,9 @@ export default abstract class Site {
     this.observe();
   };
 
-  // 実際の画面の書き換えを行う
+  /** 実際の画面の書き換えを行います。 */
   abstract replace(): void;
 
-  // サイトの監視を開始する
+  /** サイトの監視を開始します。 */
   abstract observe(): void;
 }

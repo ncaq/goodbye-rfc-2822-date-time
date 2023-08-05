@@ -8,7 +8,7 @@
     "fix:eslint": "yarn lint:eslint --fix",
     "fix:prettier": "yarn lint:prettier --write",
     "lint": "run-p --print-label lint:*",
-    "lint:eslint": "eslint --ignore-path .gitignore --cache --ext .ts .",
+    "lint:eslint": "eslint --cache --ext .js --ext .ts .",
     "lint:prettier": "prettier --ignore-unknown --check '**/*.{js,jsx,ts,tsx,json,html,css,less,sass,scss,yml,yaml}'",
     "lint:tsc": "tsc --noEmit",
     "lint:web-ext": "web-ext lint",

@@ -5,7 +5,7 @@
   "short_name": "goodbye-2822",
   "description": "I hate the date and time notation method like RFC 2822. This extension converts time notation to native language.",
 
-  "version": "3.1.0",
+  "version": "3.2.0",
 
   "browser_specific_settings": {
     "gecko": {

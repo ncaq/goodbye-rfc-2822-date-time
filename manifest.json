@@ -10,7 +10,7 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "goodbye-rfc-2822-date-time@ncaq.net",
-      "strict_min_version": "102.14.0"
+      "strict_min_version": "102.0"
     }
   },
 

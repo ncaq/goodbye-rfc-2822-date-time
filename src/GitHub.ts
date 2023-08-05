@@ -8,10 +8,7 @@ export default class GitHub extends Site {
     // issueの書き込み時間
     GitHub.relativeTimes().forEach((relativeTime) => {
       if (relativeTime instanceof HTMLElement) {
-        const datetime = relativeTime.getAttribute("datetime");
-        if (typeof datetime === "string") {
-          relativeTime.outerText = dayjs(datetime).format();
-        }
+        relativeTime.setAttribute("lang", window.navigator.languages[0]);
       }
     });
     // コミット履歴の区切り

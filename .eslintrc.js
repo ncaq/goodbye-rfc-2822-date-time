@@ -1,4 +1,6 @@
 module.exports = {
+  root: true,
+  ignorePatterns: [".eslintrc.js"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: `${__dirname}/tsconfig.json`,
@@ -9,23 +11,24 @@ module.exports = {
     "airbnb-typescript/base",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:import/errors",
+    "plugin:import/recommended",
     "plugin:import/typescript",
+    "plugin:import/errors",
     "plugin:import/warnings",
     "prettier",
   ],
-  env: {
-    browser: true,
-  },
   rules: {
     "import/order": [
       "error",
       {
-        alphabetize: { order: "asc" },
+        alphabetize: { order: "asc" }, // importは同じレイヤーならアルファベット順に。
       },
     ],
+    curly: ["error", "all"], // 副行括弧の省略禁止。
 
-    curly: ["error", "all"],
-    "no-param-reassign": "off",
+    "import/prefer-default-export": "off", // named importの方が分かり易い。
+    "max-classes-per-file": "off", // 小さなクラスを複数書きたいことがある。
+
+    "no-param-reassign": "off", // DOMを書き換えることが多い性質上無効化することが多いので仕方なく緩めます。
   },
 };

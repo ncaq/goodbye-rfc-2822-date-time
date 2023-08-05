@@ -14,8 +14,7 @@
     "lint:web-ext": "web-ext lint",
     "package": "yarn build --no-source-maps && web-ext build && yarn archive",
     "start": "web-ext run",
-    "watch": "run-p --print-label watch:*",
-    "watch:build": "parcel watch src/main.ts"
+    "watch": "parcel watch src/main.ts"
   },
   "browserslist": [
     "last 2 Chrome version",

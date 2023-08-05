@@ -8,9 +8,9 @@ export default class GitHub extends Site {
     // issueの書き込み時間
     GitHub.relativeTimes().forEach((relativeTime) => {
       if (relativeTime instanceof HTMLElement) {
-        const title = relativeTime.getAttribute("title");
-        if (title) {
-          relativeTime.innerText = title;
+        const datetime = relativeTime.getAttribute("datetime");
+        if (typeof datetime === "string") {
+          relativeTime.outerText = dayjs(datetime).format();
         }
       }
     });

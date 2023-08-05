@@ -45,7 +45,7 @@ function detect(): Site | undefined {
 /** エントリーポイントにする関数です。 */
 function main(): void {
   const site = detect();
-  if (site) {
+  if (site != null) {
     site.init();
   }
 }

@@ -34,12 +34,12 @@ export default abstract class Site {
 
   /** ページに変更が入ったら呼び出されます。 */
   run = (): void => {
-    // 監視を中断し,
+    // 監視を中断します。
     this.observers.forEach((observer) => observer.disconnect());
     this.observers = [];
-    // 全画面の書き換えを行い,
+    // 全画面の書き換えを行います。
     this.replace();
-    // 監視を再開する
+    // 監視を再開します。
     this.observe();
   };
 

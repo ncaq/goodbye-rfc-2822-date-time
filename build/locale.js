@@ -15,11 +15,11 @@ const note =
 const outDir = path.posix.normalize("src");
 const outFile = path.posix.join(outDir, "locale.ts");
 const localeDeclarationPath = path.posix.normalize(
-  "node_modules/dayjs/locale/index.d.ts"
+  "node_modules/dayjs/locale/index.d.ts",
 );
 const localeDeclaration = `/// <reference path="${path.posix.relative(
   outDir,
-  localeDeclarationPath
+  localeDeclarationPath,
 )}" />\n`;
 const localeKeys = locales.map((locale) => locale.key);
 
@@ -39,8 +39,8 @@ const generateLocaleIndex = (files) => {
     (file) =>
       `export { default as ${file.replace(/-/g, "_")} } from "${path.posix.join(
         "dayjs/locale",
-        file
-      )}";`
+        file,
+      )}";`,
   );
 
   return `${
@@ -55,5 +55,5 @@ fs.writeFile(outFile, generateLocaleIndex(localeKeys)).then(
   () => console.log("Locale build succeeded"),
   (error) => {
     throw error;
-  }
+  },
 );

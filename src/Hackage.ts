@@ -32,8 +32,8 @@ export default class Hackage extends Site {
         document,
         null,
         XPathResult.ANY_TYPE,
-        null
-      )
+        null,
+      ),
     );
     replaceTableDateTime(
       document.evaluate(
@@ -41,8 +41,8 @@ export default class Hackage extends Site {
         document,
         null,
         XPathResult.ANY_TYPE,
-        null
-      )
+        null,
+      ),
     );
   }
 

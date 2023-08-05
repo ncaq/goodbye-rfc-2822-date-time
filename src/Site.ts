@@ -26,7 +26,7 @@ export default abstract class Site {
     // AutoPagerizeでページが読み込まれた場合に対応
     document.body.addEventListener(
       "AutoPagerize_DOMNodeInserted",
-      () => this.run
+      () => this.run,
     );
     // 履歴書き換える系のSPAに効果があるかもしれない(未確認)
     window.addEventListener("popstate", () => this.run);

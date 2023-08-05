@@ -26,10 +26,10 @@ export default class GitHub extends Site {
                 return p1 + parsed.format("ll");
               }
               return match;
-            }
+            },
           );
         }
-      }
+      },
     );
     // milestoneの期日
     // 使えそうなclassが設定されてないのでカレンダーアイコンから日時を辿る
@@ -51,13 +51,13 @@ export default class GitHub extends Site {
                       return p1 + parsed.format("LL");
                     }
                     return match;
-                  }
+                  },
                 );
               textNode.replaceWith(document.createTextNode(text));
             }
           }
         }
-      }
+      },
     );
   }
 

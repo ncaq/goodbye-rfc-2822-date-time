@@ -9,7 +9,10 @@ import StackExchange from "./StackExchange";
  */
 function detect(): Site | undefined {
   // GitHub
-  if (window.location.hostname === "github.com") {
+  if (
+    window.location.hostname === "github.com" ||
+    window.location.hostname === "gist.github.com"
+  ) {
     return new GitHub();
   }
 

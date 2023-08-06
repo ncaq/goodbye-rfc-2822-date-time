@@ -2,7 +2,7 @@
   "license": "MIT",
   "scripts": {
     "archive": "git archive HEAD --output=goodbye-rfc-2822-date-time.tar.gz",
-    "build": "node build/locale.js && parcel build src/main.ts",
+    "build": "ts-node build/locale.ts && parcel build src/main.ts",
     "clean": "git clean -d --interactive -x",
     "fix": "concurrently yarn:fix:*",
     "fix:eslint": "yarn lint:eslint --fix",
@@ -31,6 +31,7 @@
     "eslint-plugin-import": "^2.28.0",
     "parcel": "^2.9.3",
     "prettier": "^3.0.1",
+    "ts-node": "^10.9.1",
     "typescript": "^5.1.6",
     "web-ext": "^7.6.2"
   },

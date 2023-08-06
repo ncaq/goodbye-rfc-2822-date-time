@@ -15,12 +15,15 @@ function replaceRelativeTimes(): void {
   relativeTimes().forEach((relativeTime) => {
     const lang = window.navigator.languages[0];
     if (relativeTime instanceof HTMLElement) {
+      // relativeTimeの値を更新するとフォーマットも最新版に更新されるようなので、
+      // 更新の必要性を伝えるために、
+      // 親要素の属性だけではなくこちらの属性設定も必要です。
       relativeTime.setAttribute("lang", lang);
       const pe = relativeTime.parentElement;
       if (pe instanceof HTMLElement) {
         // relativeTime自体が書き換えられるとlang属性も消えてしまうので、
         // 親属性にも設定してしまいます。
-        // `closest`で取得しているため現在有効です。
+        // 現在は`closest`で取得しているため有効です。
         pe.setAttribute("lang", lang);
       }
     }

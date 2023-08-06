@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/ncaq/goodbye-rfc-2822-date-time.svg?style=svg)](https://circleci.com/gh/ncaq/goodbye-rfc-2822-date-time)
+[![lint](https://github.com/ncaq/goodbye-rfc-2822-date-time/actions/workflows/lint.yml/badge.svg)](https://github.com/ncaq/goodbye-rfc-2822-date-time/actions/workflows/lint.yml)
 [![Mozilla Add-on](https://img.shields.io/amo/users/goodbye-rfc-2822-date-time.svg)](https://addons.mozilla.org/ja/firefox/addon/goodbye-rfc-2822-date-time/)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/users/ncpepaiocdmmmonbikofmggdphoheoge.svg)](https://chrome.google.com/webstore/detail/goodbye-rfc-2822-date-tim/ncpepaiocdmmmonbikofmggdphoheoge)
 

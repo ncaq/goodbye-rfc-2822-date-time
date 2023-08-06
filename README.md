@@ -1,65 +1,55 @@
-[![CircleCI](https://circleci.com/gh/ncaq/goodbye-rfc-2822-date-time.svg?style=svg)](https://circleci.com/gh/ncaq/goodbye-rfc-2822-date-time)
+[![lint](https://github.com/ncaq/goodbye-rfc-2822-date-time/actions/workflows/lint.yml/badge.svg)](https://github.com/ncaq/goodbye-rfc-2822-date-time/actions/workflows/lint.yml)
 [![Mozilla Add-on](https://img.shields.io/amo/users/goodbye-rfc-2822-date-time.svg)](https://addons.mozilla.org/ja/firefox/addon/goodbye-rfc-2822-date-time/)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/users/ncpepaiocdmmmonbikofmggdphoheoge.svg)](https://chrome.google.com/webstore/detail/goodbye-rfc-2822-date-tim/ncpepaiocdmmmonbikofmggdphoheoge)
 
 # goodbye-rfc-2822-date-time
 
-これはwebブラウザ向けの拡張機能です.
+## English
 
-This is an extension for web browsers.
+This project is a web browser extension that aims to convert date and time notations into a user-friendly form.
 
-私は[RFC 2822](https://tools.ietf.org/html/rfc2822)のような日時表記方法を嫌っています.
+For example, the [RFC 2822](https://tools.ietf.org/html/rfc2822) format (e.g. `Dec 22, 2018`) is very easy to understand for people in the US.
 
-I hate the date and time notation method like RFC 2822.
+However, for us Japanese, the notation is not always intuitive.
+I especially have a hard time remembering English month names (e.g. `Oct`), and I often wonder what month `Oct` was? octopus? I am not sure which month you are referring to.
 
-`Dec 22, 2018`のような表記です.
+By installing this extension, it is possible to convert the date and time notation to the natural notation of each user's native language, or change it to [ISO 8601](https://www.iso.org/standard/70907.html).
 
-It is notation like `Dec 22, 2018`.
+Specifically, if you are using GitHub in Japanese, notations such as `2018年12月23日` will be converted into a form that is easy for us Japanese to understand, such as `Dec 23, 2018`.
+In this way, the extension eliminates confusion about the notation of date and time.
 
-この表記はアメリカ人には良いのでしょうが,
-私にはさっぱりわかりません.
+## Japanese
 
-Although this notation is good for Americans,
-I have no idea at all.
+このプロジェクトはwebブラウザ向けの拡張機能で、日時の表記をユーザーにとって分かりやすい形に変換することを目指しています。
 
-特に私は英語の月表示を覚えられません.
+例えば[RFC 2822](https://tools.ietf.org/html/rfc2822)形式の日時表記(`Dec 22, 2018`等)は、アメリカの人々には非常に理解しやすい形となっています。
 
-Especially I can not remember English month display.
+しかし、私たち日本人にとってはその表記方法は必ずしも直感的ではありません。
+特に私は英語の月名(例:`Oct`)を覚えるのが難しく、`Oct`は何月だったっけ?タコ?など、どの月を指しているのか分からなくなります。
 
-Octって何?
-タコ?
-って感じです.
+そこで、この拡張機能を導入することで、日時表記を各ユーザーの母国語による自然な表記に変換したり、[ISO 8601](https://www.iso.org/standard/70907.html)に変更したりすることが可能になります。
 
-What is Oct?
-octopus?
-I feel it.
+具体的には、GitHubを日本語で利用している場合には、`Dec 23, 2018`といった表記が`2018年12月23日`というように、我々日本人にとって分かりやすい形に変換されます。
+このように、拡張機能を利用することで日時の表記に関する混乱を解消します。
 
-この拡張機能は時刻表記をなるべく母国語に変換します.
+# Support website(current)
 
-This extension converts time notation to native language as much as possible.
+* [GitHub](https://github.com/)
+* [Stack Overflow like sites](https://stackexchange.com/sites)
+* [Hackage](https://hackage.haskell.org/)
 
-日本語で利用すれば`Dec 22, 2018`は`2018年12月22日 土曜日 00:00`と変換されます.
-
-If used in Japanese, `Dec 22, 2018` will be converted to `2018年12月22日 土曜日 00:00`.
-
-# support website(current)
-
-* GitHub
-* Stack Overflow like site
-* Hackage
-
-# distribution
+# Distribution
 
 * [Firefox](https://addons.mozilla.org/firefox/addon/goodbye-rfc-2822-date-time/)
 * [Chrome](https://chrome.google.com/webstore/detail/goodbye-rfc-2822-date-tim/ncpepaiocdmmmonbikofmggdphoheoge)
 
-# use library mainly
+# Use library mainly
 
 [Day.js](https://day.js.org/)
 
 # How to build and package(required by Mozilla)
 
 ~~~console
-yarn
+yarn --frozen-lockfile
 yarn package
 ~~~

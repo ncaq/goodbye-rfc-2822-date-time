@@ -5309,10 +5309,10 @@ weak-lru-cache@^1.2.2:
   resolved "https://registry.yarnpkg.com/weak-lru-cache/-/weak-lru-cache-1.2.2.tgz#fdbb6741f36bae9540d12f480ce8254060dccd19"
   integrity sha512-DEAoo25RfSYMuTGc9vPJzZcZullwIqRDSI9LOy+fkCJPi6hykCnfKaXTuPBDuXAUcqHXyOgFtHNp/kB2FjYHbw==
 
-web-ext@^7.7.0:
-  version "7.7.0"
-  resolved "https://registry.yarnpkg.com/web-ext/-/web-ext-7.7.0.tgz#fc6e8e6241d4f86e0e938c96f2bd72ae857565e0"
-  integrity sha512-/jc0kbSLfw/ANra6v70I6QADrVYL0Wo98T0Cigt39EjVpXbiwES8zww/9QL7aE0L1tK0ISWYq45KNisDV+GKVA==
+web-ext@^7.8.0:
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/web-ext/-/web-ext-7.8.0.tgz#710cd73af79e3ac26fd4883b8894a3f6fd692d5d"
+  integrity sha512-ta+VjbNfK5q0pqRmrlH/DQMdJ89sAJFfgcvpqoUoe2gPxLu18zZ5mIakGvyjmfjrkJLOZ2NCNF7suj/qd6xaEQ==
   dependencies:
     "@babel/runtime" "7.21.0"
     "@devicefarmer/adbkit" "3.2.3"

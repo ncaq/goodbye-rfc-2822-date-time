@@ -20,6 +20,9 @@
     "last 2 Chrome version",
     "Firefox ESR"
   ],
+  "dependencies": {
+    "dayjs": "^1.11.10"
+  },
   "devDependencies": {
     "@types/node": "^20.11.17",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
@@ -34,8 +37,5 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
     "web-ext": "^7.11.0"
-  },
-  "dependencies": {
-    "dayjs": "^1.11.10"
   }
 }

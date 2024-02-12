@@ -16,6 +16,9 @@ updates:
       interval: "monthly"
     open-pull-requests-limit: 20
     groups:
+      types:
+        patterns:
+          - "@types*"
       eslint:
         patterns:
           - "*eslint*"

@@ -18,7 +18,7 @@ updates:
     groups:
       types:
         patterns:
-          - "@types*"
+          - "@types/*"
       eslint:
         patterns:
           - "*eslint*"

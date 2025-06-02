@@ -36,6 +36,6 @@
     "prettier": "^3.5.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
-    "web-ext": "^8.6.0"
+    "web-ext": "^8.7.1"
   }
 }

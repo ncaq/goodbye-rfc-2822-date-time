@@ -21,7 +21,7 @@
     "Firefox ESR"
   ],
   "dependencies": {
-    "dayjs": "^1.11.13"
+    "dayjs": "^1.11.18"
   },
   "devDependencies": {
     "@types/node": "^22.15.29",

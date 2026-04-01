@@ -35,7 +35,7 @@
     "parcel": "^2.16.3",
     "prettier": "^3.8.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.2",
     "web-ext": "^8.10.0"
   }
 }
